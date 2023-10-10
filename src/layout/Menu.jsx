@@ -1,19 +1,17 @@
-import Find from "../img/icon/find.png";
+import find from "../img/icon/find.png";
 
 export default function Menu() {
   return (
-    <div>
-      <div className="relative">
-        <div className="flex ">
-          <img
-            src={Find}
-            alt="find"
-            className=" absolute fill-black bg-black"
-          />
+    <div className="flex">
+      <div className="flex relative ">
+        <div className="flex items-center">
+          <img src={find} alt="find" className="flex absolute left-1 h-7 w-7 " />
         </div>
+
         <input
           type="text"
-          className=" border  outline-none hover:focus:border-red-500 p-2 "
+          className="border p-2 pl-10 rounded-md "
+          placeholder="search coin"
         ></input>
       </div>
     </div>

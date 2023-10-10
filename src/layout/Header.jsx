@@ -17,8 +17,8 @@ export default function Header() {
           </div>
         </div>
 
-          <Menu/>
         <div className="flex gap-4 ">
+          <Menu/>
           <button className="bg-gray-100 px-6 rounded-full text-gray-500 hover:bg-gray-200">
             Login
           </button>

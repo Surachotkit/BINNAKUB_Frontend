@@ -1,6 +1,6 @@
 import find from "../img/icon/find.png";
 
-export default function Menu() {
+export default function Search() {
   return (
     <div className="flex">
       <div className="flex relative ">
@@ -10,7 +10,7 @@ export default function Menu() {
 
         <input
           type="text"
-          className="border p-2 pl-10 rounded-md "
+          className="flex justify-center items-center w-full h-full border py-4  pl-10 rounded-md "
           placeholder="search coin"
         ></input>
       </div>

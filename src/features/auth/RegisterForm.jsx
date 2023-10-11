@@ -1,7 +1,7 @@
 export default function RegisterForm() {
   return (
-    <form className="flex justify-center flex-1 ">
-      <div className="flex h-screen">
+    <form className="flex justify-center flex-1">
+      <div className="flex h-[90vh]">
         <div className="flex flex-col justify-center w-[600px] p-5">
           <div className="flex justify-center pb-5 text-[1.5rem] font-bold">
           REGISTER

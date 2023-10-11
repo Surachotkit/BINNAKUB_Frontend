@@ -15,9 +15,11 @@ export default function Header() {
               </span>
             </Link>
           </div>
+          <Link to="/market">
           <div className=" text-gray-500 hover:text-red-500 cursor-pointer">
             Markets
           </div>
+          </Link>
         </div>
 
         <div className="flex gap-4 ">

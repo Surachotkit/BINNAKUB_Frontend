@@ -3,6 +3,7 @@ import Layout from "../layout/Layout";
 import HomePage from "../pages/Home/HomePage";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
+import MarketForm from "../features/market/MarketForm";
 
 const router = createBrowserRouter([
   {
@@ -11,7 +12,8 @@ const router = createBrowserRouter([
     children: [
       { path: "", element: <HomePage /> },
       { path: "login", element: <LoginPage /> },
-      { path: "register", element: <RegisterPage/>}
+      { path: "register", element: <RegisterPage/>},
+      { path: "market", element: <MarketForm/>}
     ],
   },
 ]);

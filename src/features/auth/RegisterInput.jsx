@@ -10,7 +10,7 @@ export default function RegisterInput({
     <div>
       <input
         type={type}
-        className={`block border p-3 pl-10 w-full rounded-md
+        className={`block border p-3 pl-10 w-full rounded-md mt-5
         ${
           hasError
           ? "border-red-500 focus:ring-red-300"

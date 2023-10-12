@@ -2,15 +2,20 @@ import Joi from "joi";
 import RegisterInput from "./RegisterInput";
 import { useState } from "react";
 import { useAuth } from "../../hooks/use-auth";
-import InputErrorMessage from "./InputErrorMessage"
+import InputErrorMessage from "./InputErrorMessage";
+import { toast } from "react-toastify";
 
 const registerSchema = Joi.object({
   email: Joi.string().trim().required().messages({
-    "string.empty": "Email is required"
+    "string.empty": "Email is required",
   }),
-  password: Joi.string().trim().required().pattern(/^[a-zA-Z0-9]{8,30}$/).messages({
-    "string.empty": "Password is required"
-  }),
+  password: Joi.string()
+    .trim()
+    .required()
+    .pattern(/^[a-zA-Z0-9]{8,30}$/)
+    .messages({
+      "string.empty": "Password is required",
+    }),
   confirmPassword: Joi.string().valid(Joi.ref("password")).trim().required(),
 });
 
@@ -51,53 +56,55 @@ export default function RegisterForm() {
       return setError(validationError);
     }
     setError({});
-    console.log(input)
-    register(input).catch(err => console.log(err))
+    console.log(input);
+    register(input).catch((err) => {
+      toast.error(err);
+    });
   };
 
   return (
     <form className="flex justify-center flex-1" onSubmit={handleSubmitForm}>
       <div className="flex h-[90vh]">
-        <div className="flex flex-col justify-center w-[600px] p-5">
+        <div className="flex flex-col justify-center w-[600px] p-5 ">
           <div className="flex justify-center pb-5 text-[1.5rem] font-bold">
             REGISTER
           </div>
           <div>
-
-          <RegisterInput
-            placeholder="EMAIL ADDRESS"
-            onChange={handleChangeInput}
-            name="email"
-            value={input.email}
-            hasError={error.email}
-          />
-          {error.email && <InputErrorMessage message={error.email}/>}
+            <RegisterInput
+              placeholder="EMAIL ADDRESS"
+              onChange={handleChangeInput}
+              name="email"
+              value={input.email}
+              hasError={error.email}
+            />
+            {error.email && <InputErrorMessage message={error.email} />}
           </div>
-          
 
           {/* <span className="text-red-500 pb-5">Invalid</span> */}
           <RegisterInput
             placeholder="PASSWORD"
-            type="password"
+            type="text"
             onChange={handleChangeInput}
             name="password"
             value={input.password}
             hasError={error.password}
           />
-          {error.password && <InputErrorMessage message={error.password}/>}
+          {error.password && <InputErrorMessage message={error.password} />}
 
           {/* <span className="text-red-500 pb-5">Invalid</span> */}
           <RegisterInput
             placeholder="CONFIRM PASSWORD"
-            type="password"
+            type="text"
             onChange={handleChangeInput}
             name="confirmPassword"
             value={input.confirmPassword}
             hasError={error.confirmPassword}
           />
-          {error.confirmPassword && <InputErrorMessage message={error.confirmPassword}/>}
+          {error.confirmPassword && (
+            <InputErrorMessage message={error.confirmPassword} />
+          )}
           {/* <span className="text-red-500 pb-5">Invalid</span> */}
-          <button className="flex justify-center bg-red-500 rounded-md w-full p-2 text-[#D9D9D9] hover:bg-red-600">
+          <button className="flex justify-center bg-red-500 rounded-md w-full p-2 text-[#D9D9D9] hover:bg-red-600 mt-5">
             JOIN BINNAKUB
           </button>
         </div>

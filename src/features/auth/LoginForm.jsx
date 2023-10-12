@@ -1,3 +1,5 @@
+import LoginInput from "./LoginInput";
+
 export default function LoginForm() {
   return (
     <form className="flex justify-center flex-1">
@@ -6,17 +8,10 @@ export default function LoginForm() {
           <div className="flex justify-center pb-5 text-[1.5rem] font-bold">
             Welcome to Binnakub!
           </div>
-          <input
-            type="text"
-            className="block border p-3 pl-10 w-full rounded-md"
-            placeholder="EMAIL ADDRESS"
-          />
+          <LoginInput placeholder="EMAIL ADDRESS" />
           <span className="text-red-500 pb-5">Invalid</span>
-          <input
-            type="text"
-            className="block border p-3 pl-10 w-full rounded-md"
-            placeholder="PASSWORD"
-          />
+          <LoginInput placeholder="PASSWORD" type="password" />
+
           <span className="text-red-500 pb-5">Invalid</span>
           <button className="flex justify-center bg-red-500 rounded-md w-full p-2 text-[#D9D9D9] hover:bg-red-600">
             LOGIN

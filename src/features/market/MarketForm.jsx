@@ -6,7 +6,7 @@ import MarketMenu from "./MarketMenu";
 
 export default function MarketForm() {
   const [isOpen, setIsOpen] = useState(true);
-  console.log(isOpen)
+  // console.log(isOpen)
 
 
   const toggleModal = () => {

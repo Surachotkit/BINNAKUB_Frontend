@@ -47,7 +47,7 @@ export default function Modal({onClose}) {
                   />
                   <div className="flex justify-center items-center gap-1 bg-gray-200 w-[8rem] rounded-lg">
                     <img src={usdt} alt="usd" className="w-8" />
-                    <span>USD</span>
+                    <span>USDT</span>
                   </div>
                 </div>
               </div>

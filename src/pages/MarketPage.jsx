@@ -1,3 +1,9 @@
+import MarketForm from "../features/market/MarketForm";
+
 export default function MarketPage() {
-  return <div>MarketPage</div>;
+  return (
+    <div>
+      <MarketForm />
+    </div>
+  );
 }

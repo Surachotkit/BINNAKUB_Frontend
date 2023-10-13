@@ -2,6 +2,7 @@ import { useState } from "react";
 import LoginInput from "./LoginInput";
 import { useAuth } from "../../hooks/use-auth";
 import { toast } from "react-toastify";
+import { Navigate } from "react-router-dom";
 
 
 export default function LoginForm() {
@@ -14,10 +15,9 @@ export default function LoginForm() {
   const handleSubmitForm = (e) => {
     e.preventDefault();
     login(input)
-    .catch((err) => {
-      toast.error(err.response.data.message);
-    });
+   
   };
+
 
   return (
     <form className="flex justify-center flex-1" onSubmit={handleSubmitForm}>

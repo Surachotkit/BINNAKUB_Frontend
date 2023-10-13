@@ -5,9 +5,8 @@ export default function RegisterPage() {
   return (
     <div className="flex flex-col">
       <div className="flex ">
-
-      <RegisterContent />
-      <RegisterForm />
+        <RegisterContent />
+        <RegisterForm />
       </div>
     </div>
   );

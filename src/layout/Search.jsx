@@ -5,7 +5,7 @@ export default function Search() {
     <div className="flex">
       <div className="flex relative ">
         <div className="flex items-center">
-          <img src={find} alt="find" className="flex absolute left-1 h-7 w-7 " />
+          <img src={find} alt="find" className="flex absolute left-1 top-1 h-6 w-6 " />
         </div>
 
         <input

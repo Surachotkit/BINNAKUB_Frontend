@@ -1,9 +1,10 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "../layout/Layout";
+import RedirectIfAuthenticated from "../features/auth/RedirectIfAuthenticated";
 import HomePage from "../pages/Home/HomePage";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
-import MarketForm from "../features/market/MarketForm";
+import MarketPage from "../pages/MarketPage";
 
 const router = createBrowserRouter([
   {
@@ -11,13 +12,20 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       { path: "", element: <HomePage /> },
-      { path: "login", element: <LoginPage /> },
-      { path: "register", element: <RegisterPage/>},
-      { path: "market", element: <MarketForm/>}
+      {
+        path: "login",
+        element: (
+          <RedirectIfAuthenticated>
+            <LoginPage />
+          </RedirectIfAuthenticated>
+        ),
+      },
+      { path: "register", element: <RegisterPage /> },
+      { path: "market", element: <MarketPage /> },
     ],
   },
 ]);
 
 export default function Route() {
-  return <RouterProvider router={router} />
+  return <RouterProvider router={router} />;
 }

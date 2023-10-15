@@ -13,7 +13,15 @@ export const AuthContext = createContext();
 export default function AuthContextProvider({ children }) {
   const [authUser, setAuthUser] = useState(null);
   const [initialLoading, setInitialLoading] = useState(true);
-  // console.log(initialLoading)
+  const [isOpenSell, setIsOpenSell] = useState(false);
+  const toggleModalSell = () => {
+    setIsOpenSell(!isOpenSell);
+  };
+  const [isOpenBuy, setIsOpenBuy] = useState(false);
+  const toggleModalBuy = () => {
+    setIsOpenBuy(!isOpenBuy);
+  };
+ 
 
   useEffect(() => {
     if (getAccessToken()) {
@@ -21,7 +29,10 @@ export default function AuthContextProvider({ children }) {
         .get("/auth/me")
         .then((res) => {
           setAuthUser(res.data.user);
-    
+          console.log(
+            "🚀 ~ file: AuthContext.jsx:24 ~ .then ~ res.data.user:",
+            res.data.user
+          );
         })
         .finally(() => {
           setInitialLoading(false);
@@ -36,6 +47,11 @@ export default function AuthContextProvider({ children }) {
     const res = await axios.post("/auth/login", credential);
     addAccessToken(res.data.accessToken);
     setAuthUser(res.data.user);
+    console.log(
+      "🚀 ~ file: AuthContext.jsx:41 ~ login ~ res.data.user:",
+      res.data.user
+    );
+    console.log("🚀 ~ file: AuthContext.jsx:39 ~ login ~ res:", res);
   };
 
   const register = async (registerInputObject) => {
@@ -45,9 +61,25 @@ export default function AuthContextProvider({ children }) {
     console.log(res);
   };
 
+  const logout = () => {
+    removeAccessToken();
+    setAuthUser(null);
+  };
 
   return (
-    <AuthContext.Provider value={{ login, authUser, initialLoading, register }}>
+    <AuthContext.Provider
+      value={{
+        login,
+        authUser,
+        initialLoading,
+        register,
+        logout,
+        toggleModalSell,
+        isOpenSell,
+        toggleModalBuy,
+        isOpenBuy,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

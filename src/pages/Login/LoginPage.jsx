@@ -1,5 +1,5 @@
-import LoginContent from "../features/auth/LoginContent";
-import LoginForm from "../features/auth/LoginForm";
+import LoginContent from "../../features/auth/LoginContent";
+import LoginForm from "../../features/auth/LoginForm";
 
 export default function LoginPage() {
   return (

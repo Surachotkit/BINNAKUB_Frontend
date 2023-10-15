@@ -3,18 +3,33 @@ import Modal from "../../components/Modal";
 import MarketContent from "./MarketContent";
 import MarketItem from "./MarketItem";
 import MarketMenu from "./MarketMenu";
+import PaymentSell from "../payment/PaymentSell";
+import PaymentBuy from "../payment/PaymentBuy";
+import { useAuth } from "../../hooks/use-auth";
 
 export default function MarketForm() {
-  const [isOpen, setIsOpen] = useState(true);
-  // console.log(isOpen)
+  // const [isOpen, setIsOpen] = useState(false);
+  // const togglePayment = () => {
+  //   setIsOpen(!isOpen);
+  // };
+  // console.log(setIsOpen);
+  const {isOpenSell, toggleModalSell} = useAuth()
+  const {isOpenBuy, toggleModalBuy} = useAuth()
 
-
-  const toggleModal = () => {
-    setIsOpen(!isOpen)
-  }
   return (
     <div className="flex flex-col gap-4">
-      {isOpen && (<Modal open={isOpen} onClose={toggleModal} />)}
+      {isOpenBuy && (
+        <Modal >
+          <PaymentBuy />
+        </Modal>
+      )}
+
+      {isOpenSell && (
+        <Modal >
+          <PaymentSell/>
+        </Modal>
+      )}
+    
       <div className="flex justify-center items-center">
         <MarketContent />
       </div>
@@ -23,6 +38,7 @@ export default function MarketForm() {
       </div>
 
       <div className="flex flex-col justify-center items-center">
+        
         <MarketItem />
         <MarketItem />
         <MarketItem />

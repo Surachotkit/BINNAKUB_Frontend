@@ -11,7 +11,7 @@ export default function HomePage() {
 
       <div className="flex justify-center items-center flex-1 ">
         <div className="">
-          <img src={bitPhoto} alt="backgroundHomePage" />
+          <img src={bitPhoto} alt="backgroundHomePage" className="w-[28rem]" />
         </div>
       </div>
     </div>

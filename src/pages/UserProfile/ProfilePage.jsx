@@ -9,15 +9,17 @@ export default function ProfilePage() {
   return (
     <div className="flex flex-col flex-1 h-[75vh]">
       <div>
-        <TabBarProfile />
+        {/* <TabBarProfile /> */}
+        
       </div>
 
    
       <div className="flex">
-        <Sidebar />
-        {/* <Dashboard /> */}
+        {/* <Sidebar /> */}
+
+        <Dashboard />
         {/* <Transaction/> */}
-        <Deposit/>
+        {/* <Deposit/> */}
         
       </div>
 

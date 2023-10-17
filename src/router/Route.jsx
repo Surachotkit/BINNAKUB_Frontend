@@ -9,6 +9,9 @@ import ProfilePage from "../pages/UserProfile/ProfilePage";
 import Deposit from "../pages/UserProfile/Deposit";
 import Transaction from "../pages/UserProfile/Transaction";
 import Dashboard from "../pages/UserProfile/Dashboard";
+import Profile from "../layout/Profile";
+import DashboardNotRecord from "../pages/UserProfile/DashboardNotrecord";
+import CheckIsAdmin from "../features/auth/CheckIsAdmin";
 
 const router = createBrowserRouter([
   {
@@ -20,27 +23,27 @@ const router = createBrowserRouter([
         path: "login",
         element: (
           <RedirectIfAuthenticated>
-            <LoginPage />
+        
+              <LoginPage />
+    
           </RedirectIfAuthenticated>
         ),
       },
       { path: "register", element: <RegisterPage /> },
       { path: "market", element: <MarketPage /> },
-      { path: "profile", element: <ProfilePage /> },
-
+      // { path: "profile", element: <ProfilePage /> },
     ],
   },
   {
-    path: "/",
-    element: <Layout />,
+    path: "/profile",
+    element: <Profile />,
     children: [
-      { path: "", element: <HomePage />  },
-      { path: "dashboard", element: <Dashboard /> },
-      { path: "transaction", element: <Transaction /> },
-      { path: "deposit/history", element: <Deposit /> },
-    
-    ]
-  }
+      { path: "/profile/dashboard", element: <Dashboard /> },
+      { path: "/profile/transactionhistory", element: <Transaction /> },
+      { path: "/profile/deposithistory", element: <Deposit /> },
+      { path: "/profile/dashboard/norecord", element: <DashboardNotRecord /> },
+    ],
+  },
 ]);
 
 export default function Route() {

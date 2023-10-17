@@ -1,9 +1,44 @@
+import { useEffect } from "react";
 import usd from "../../img/icon/usd.png";
 import usdt from "../../img/icon/usdt.png";
+import { useState } from "react";
+import { useAuth } from "../../hooks/use-auth";
+import axios from "../../config/axios";
+import { useNavigate } from "react-router-dom";
 
-export default function Deposit({onClose}) {
+export default function Deposit({ onClose }) {
+  const { authUser, closeModal, toggleModalClose,setCloseModal } = useAuth();
+  // console.log(
+  //   "🚀 ~ file: Deposit.jsx:16 ~ Deposit ~ authUser:",
+  //   authUser.user_id
+  // );
+  const [deposit, setDeposit] = useState({
+    amount: "",
+    user_id: authUser.user_id,
+  });
+  // console.log("🚀 ~ file: Deposit.jsx:12 ~ Deposit ~ deposit:", deposit);
+  const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   const res = axios.get("/deposit/create").then((res) => {
+  //     console.log(res);
+  //   });
+
+  //   console.log("🚀 ~ file: Deposit.jsx:21 ~ useEffect ~ res:", res);
+    
+  // }, []);
+
+  const handleSubmitForm = (e) => {
+    e.preventDefault();
+    setDeposit(deposit);
+    axios.post("/deposit/create", deposit);
+    
+    // toggleModalClose()
+    onClose()
+    // navigate("/");
+  };
   return (
-    <div>
+    <form onSubmit={handleSubmitForm}>
       <div className="flex justify-between p-4 text-xl">
         <div className="flex items-center gap-2">
           <img src={usd} alt="usd" />
@@ -25,7 +60,10 @@ export default function Deposit({onClose}) {
             type="text"
             className="border p-2 bg-gray-50 rounded-md w-full"
             placeholder="Please enter amount"
+            value={deposit.amount}
+            onChange={(e) => setDeposit({ ...deposit, amount: e.target.value })}
           />
+
           <div className="flex justify-center items-center gap-1 bg-gray-200 w-[8rem] rounded-lg">
             <img src={usd} alt="usd" className="w-8" />
             <span>USD</span>
@@ -38,6 +76,10 @@ export default function Deposit({onClose}) {
               type="text"
               className="border p-2 bg-gray-50 rounded-md w-full"
               placeholder="0.00"
+              value={deposit.amount}
+              onChange={(e) =>
+                setDeposit({ ...deposit, amount: e.target.value })
+              }
             />
             <div className="flex justify-center items-center gap-1 bg-gray-200 w-[8rem] rounded-lg">
               <img src={usdt} alt="usd" className="w-8" />
@@ -54,7 +96,7 @@ export default function Deposit({onClose}) {
 
         {/* button */}
         <div className="flex justify-center items-center w-full px-5 gap-4">
-          <button className="bg-red-500 hover:bg-red-600 w-full rounded-md  text-white h-full p-2">
+          <button className="bg-red-500 hover:bg-red-600 w-full rounded-md  text-white h-full p-2" >
             Deposit
           </button>
           <button
@@ -65,6 +107,6 @@ export default function Deposit({onClose}) {
           </button>
         </div>
       </div>
-    </div>
+    </form>
   );
 }

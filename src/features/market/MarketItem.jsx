@@ -21,10 +21,10 @@ export default function MarketItem() {
         setPrice(res.data.data[0].priceUsd);
         setChange(res.data.data[0].changePercent24Hr);
         setMarketCap(res.data.data[0].marketCapUsd);
-        console.log(
-          "🚀 ~ file: MarketItem.jsx:14 ~ axiosData ~ res:",
-          res.data.data[0].id
-        );
+        // console.log(
+        //   "🚀 ~ file: MarketItem.jsx:14 ~ axiosData ~ res:",
+        //   res.data.data[0].id
+        // );
       } catch (err) {
         console.log(err);
       }
@@ -43,10 +43,11 @@ export default function MarketItem() {
           </div>
         </span>
         <span>{price}</span>
-        <span className="text-green-500">{change}%</span>
+        <span className=" text-green-500">{change}%</span>
         <span>{marketCap}</span>
         <span>10,000</span>
         <MarketButton />
+       
       </div>
     </div>
   );

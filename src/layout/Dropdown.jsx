@@ -10,7 +10,8 @@ export default function Dropdown() {
   const dropdownProfile = () => {
     setIsOpenProfile(!isOpenProfile);
   };
-  const { logout } = useAuth();
+  const { logout, authUser } = useAuth();
+ 
   return (
     <div className="relative">
       <div className="">
@@ -24,8 +25,8 @@ export default function Dropdown() {
 
       {isOpenProfile && (
         <div className="flex flex-col justify-center items-center w-52 gap-2 py-4 absolute bg-red-500 right-0 translate-y-1 border rounded-lg shadow-xl p-2 ">
-          <div className="font-semibold text-white">user@gmail.com</div>
-          <Link to="/profile" className="flex  justify-center hover:bg-red-400 w-full cursor-pointer p-1 gap-4">
+          <div className="font-semibold text-white">{authUser.email}</div>
+          <Link to="/profile/dashboard" className="flex  justify-center hover:bg-red-400 w-full cursor-pointer p-1 gap-4">
               <img src={Account} alt="account" className="w-5" />
               <div className="text-sm text-white ">Account</div>
           </Link>

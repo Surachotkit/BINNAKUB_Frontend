@@ -9,11 +9,14 @@ export default function Deposit() {
       <div className="flex flex-col">
         <div className="flex gap-8 py-2">
           
-          <Link to="/transaction">
+          <Link to="/profile/transactionhistory">
           <div className="hover:border-b-4 border-red-500 py-2 cursor-pointer">Transaction History </div>
 
           </Link>
+          <Link to="/profile/deposithistory">
+          
           <div className="hover:border-b-4 border-red-500 py-2 cursor-pointer">Deposit History </div>
+          </Link>
         </div>
         <DepositMenu />
         <DepositItem />

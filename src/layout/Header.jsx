@@ -10,7 +10,7 @@ import Dropdown from "./Dropdown";
 
 export default function Header() {
   const { authUser } = useAuth();
-  console.log("🚀 ~ file: Header.jsx:9 ~ Header ~ authUser:", authUser);
+  // console.log("🚀 ~ file: Header.jsx:9 ~ Header ~ authUser:", authUser);
   const [isOpen, setIsOpen] = useState(false);
   const toggleModal = () => {
     setIsOpen(!isOpen);

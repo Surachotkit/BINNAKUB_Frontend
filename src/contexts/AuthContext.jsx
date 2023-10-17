@@ -21,7 +21,8 @@ export default function AuthContextProvider({ children }) {
   const toggleModalBuy = () => {
     setIsOpenBuy(!isOpenBuy);
   };
- 
+
+
 
   useEffect(() => {
     if (getAccessToken()) {
@@ -42,15 +43,16 @@ export default function AuthContextProvider({ children }) {
     }
   }, []);
 
-  // console.log(authUser);
+  // console.log("authUser :",authUser);
   const login = async (credential) => {
     const res = await axios.post("/auth/login", credential);
     addAccessToken(res.data.accessToken);
     setAuthUser(res.data.user);
     console.log(
       "🚀 ~ file: AuthContext.jsx:41 ~ login ~ res.data.user:",
-      res.data.user
+      res.data.user.role
     );
+    // console.log(authUser.role);
     console.log("🚀 ~ file: AuthContext.jsx:39 ~ login ~ res:", res);
   };
 
@@ -78,6 +80,7 @@ export default function AuthContextProvider({ children }) {
         isOpenSell,
         toggleModalBuy,
         isOpenBuy,
+
       }}
     >
       {children}

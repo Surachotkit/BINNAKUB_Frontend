@@ -8,13 +8,11 @@ import PaymentBuy from "../payment/PaymentBuy";
 import { useAuth } from "../../hooks/use-auth";
 
 export default function MarketForm() {
-  // const [isOpen, setIsOpen] = useState(false);
-  // const togglePayment = () => {
-  //   setIsOpen(!isOpen);
-  // };
-  // console.log(setIsOpen);
+
+
   const {isOpenSell, toggleModalSell} = useAuth()
   const {isOpenBuy, toggleModalBuy} = useAuth()
+
 
   return (
     <div className="flex flex-col gap-4">
@@ -38,13 +36,8 @@ export default function MarketForm() {
       </div>
 
       <div className="flex flex-col justify-center items-center">
-        
         <MarketItem />
-        <MarketItem />
-        <MarketItem />
-        <MarketItem />
-
-
+   
       </div>
     </div>
   );

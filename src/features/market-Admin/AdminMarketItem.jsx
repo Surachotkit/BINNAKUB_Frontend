@@ -4,6 +4,7 @@ import axios from "axios";
 import { useState } from "react";
 import AdminMarketEdit from "./action/AdminMarketEdit";
 
+
 export default function AdminMarketItem() {
   const [coinName, setCoinName] = useState(null);
   const [coinSubName, setCoinSubName] = useState(null);
@@ -50,6 +51,7 @@ export default function AdminMarketItem() {
         <span>{marketCap}</span>
         <span>10,000</span>
         <AdminMarketEdit/>
+
        
       </div>
     </div>

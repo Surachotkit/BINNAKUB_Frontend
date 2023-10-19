@@ -21,6 +21,9 @@ export default function AuthContextProvider({ children }) {
   const toggleModalBuy = () => {
     setIsOpenBuy(!isOpenBuy);
   };
+  const [isOpenAddcoin, setIsOpenAddcoin] = useState(false)
+  const [isOpenAddcoinMore, setIsOpenAddcoinMore] = useState(false)
+  const [isOpenAddQuantity, setIsOpenAddQuantity] = useState(false)
 
 
 
@@ -80,6 +83,12 @@ export default function AuthContextProvider({ children }) {
         isOpenSell,
         toggleModalBuy,
         isOpenBuy,
+        isOpenAddcoin,
+        isOpenAddcoinMore,
+        isOpenAddQuantity,
+        setIsOpenAddcoin,
+        setIsOpenAddcoinMore,
+        setIsOpenAddQuantity
 
       }}
     >

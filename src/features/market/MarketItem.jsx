@@ -4,6 +4,7 @@ import bitCoin from "../../img/icon/btc.png";
 import MarketButton from "./MarketButton";
 import axios from "axios";
 import { useState } from "react";
+// import axios from "../../config/axios";
 
 export default function MarketItem() {
   const [coinName, setCoinName] = useState(null);
@@ -21,10 +22,19 @@ export default function MarketItem() {
         setPrice(res.data.data[0].priceUsd);
         setChange(res.data.data[0].changePercent24Hr);
         setMarketCap(res.data.data[0].marketCapUsd);
-        // console.log(
-        //   "🚀 ~ file: MarketItem.jsx:14 ~ axiosData ~ res:",
-        //   res.data.data[0].id
-        // );
+
+
+        // test
+        // const res = await axios.get("http://localhost:8082/coinlist/market");
+        // console.log("🚀 ~ file: MarketItem.jsx:26 ~ axiosData ~ res:", res)
+        // console.log("🚀 ~ file: MarketItem.jsx:26 ~ axiosData ~ res:", res.data[0].getCoinList)
+        // console.log("🚀 ~ file: MarketItem.jsx:26 ~ axiosData ~ res:", res.data[0].getCoinList[0].coin_name)
+        // setCoinName(res.data[0].getCoinList[0].coin_name);
+        // // setCoinSubName(res.data[0].getCoinList[0].coin_name);
+        // setPrice(res.data[0].getCoinList[0].price);
+        // setChange(res.data[0].getCoinList[0].fee);
+        // setMarketCap(res.data[0].getCoinList[0].quantity);
+
    
       } catch (err) {
         console.log(err);

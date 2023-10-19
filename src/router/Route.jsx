@@ -6,12 +6,17 @@ import LoginPage from "../pages/Login/LoginPage";
 import RegisterPage from "../pages/Register/RegisterPage";
 import MarketPage from "../pages/Market/MarketPage";
 import ProfilePage from "../pages/UserProfile/ProfilePage";
-import Deposit from "../pages/UserProfile/Deposit";
-import Transaction from "../pages/UserProfile/Transaction";
+import DepositHistory from "../pages/UserProfile/DepositHistory";
+import TransactionHistory from "../pages/UserProfile/TransactionHistory";
 import Dashboard from "../pages/UserProfile/Dashboard";
 import Profile from "../layout/Profile";
 import DashboardNotRecord from "../pages/UserProfile/DashboardNotrecord";
 import CheckIsAdmin from "../features/auth/CheckIsAdmin";
+import AdminMarketPage from "../pages/Admin/AdminMarket/AdminMarketPage";
+import AdminDashboard from "../pages/Admin/AdminProfile/AdminDashboard";
+import NotLogin from "../features/auth/NotLogin";
+import Authenicated from "../features/auth/Authenicated";
+import Loading from "../components/Loading";
 
 const router = createBrowserRouter([
   {
@@ -23,27 +28,78 @@ const router = createBrowserRouter([
         path: "login",
         element: (
           <RedirectIfAuthenticated>
-        
-              <LoginPage />
-    
+            <LoginPage />
           </RedirectIfAuthenticated>
         ),
       },
-      { path: "register", element: <RegisterPage /> },
+      {
+        path: "register",
+        element: (
+          <RedirectIfAuthenticated>
+            <RegisterPage />
+          </RedirectIfAuthenticated>
+        ),
+      },
       { path: "market", element: <MarketPage /> },
-      // { path: "profile", element: <ProfilePage /> },
     ],
   },
   {
     path: "/profile",
-    element: <Profile />,
+    element: (
+    
+        <NotLogin>
+          <Profile />
+        </NotLogin>
+      
+    ),
     children: [
       { path: "/profile/dashboard", element: <Dashboard /> },
-      { path: "/profile/transactionhistory", element: <Transaction /> },
-      { path: "/profile/deposithistory", element: <Deposit /> },
+      { path: "/profile/transactionhistory", element: <TransactionHistory /> },
+      { path: "/profile/deposithistory", element: <DepositHistory /> },
       { path: "/profile/dashboard/norecord", element: <DashboardNotRecord /> },
+      // { path: "/profile/loading", element: <Loading /> },
     ],
   },
+
+  {
+    path: "/admin/profile",
+    element: (
+      <Authenicated>
+        <NotLogin>
+          <Profile />
+        </NotLogin>
+      </Authenicated>
+    ),
+    children: [
+      { path: "/admin/profile/dashboard", element: <AdminDashboard /> },
+      {
+        path: "/admin/profile/transactionhistory",
+        element: <TransactionHistory />,
+      },
+      { path: "/admin/profile/deposithistory", element: <DepositHistory /> },
+      {
+        path: "/admin/profile/dashboard/norecord",
+        element: <DashboardNotRecord />,
+      },
+      
+    ],
+  },
+
+  {
+    path: "/admin",
+    element: 
+    <Authenicated>
+      <Layout />
+    </Authenicated>,
+    children: [
+      // { path: "/admin/create", element: <Dashboard /> },
+      // { path: "/admin/addquantity", element: <TransactionHistory /> },
+      // { path: "/admin/addcoin", element: <DepositHistory /> },
+      { path: "/admin/market", element: <AdminMarketPage /> },
+    ],
+  },
+
+
 ]);
 
 export default function Route() {

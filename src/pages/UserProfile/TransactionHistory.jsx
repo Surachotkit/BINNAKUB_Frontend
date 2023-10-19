@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import TransactionItem from "../../features/profile/TransactionItem";
 import TransactionMenu from "../../features/profile/TransactionMenu";
 
-export default function Transaction() {
+export default function TransactionHistory() {
   return (
     <div className="flex justify-center w-full pt-20">
       <div className="flex flex-col">

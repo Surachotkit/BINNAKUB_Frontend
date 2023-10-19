@@ -25,12 +25,16 @@ export default function MarketItem() {
         //   "🚀 ~ file: MarketItem.jsx:14 ~ axiosData ~ res:",
         //   res.data.data[0].id
         // );
+   
       } catch (err) {
         console.log(err);
       }
     };
     axiosData();
   }, []);
+
+
+
   return (
     <div className="flex flex-col gap-5 flex-1 w-[180vh]">
       <div className="flex items-center justify-evenly hover:bg-gray-50 py-5 border-b">

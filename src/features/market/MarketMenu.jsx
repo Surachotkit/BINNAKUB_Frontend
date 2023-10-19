@@ -8,6 +8,7 @@ export default function MarketMenu() {
         <span>Market Cap</span>
         <span>Amount</span>
         <span>Trade</span>
+     
       </div>
     </div>
   );

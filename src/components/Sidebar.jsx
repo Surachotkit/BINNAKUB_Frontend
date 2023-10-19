@@ -7,7 +7,7 @@ export default function Sidebar() {
   return (
     <div className="flex h-[75vh] w-[30vh]  border ">
       <div className="flex flex-col ">
-        <div className="flex justify-center hover:bg-gray-200 cursor-pointer hover:border-l-4 border-l-red-600">
+        <div className="flex justify-center hover:bg-gray-200 cursor-pointer hover:border-l-4 border-l-red-600 ">
           <Link to="/profile/dashboard">
             <div className="flex items-center  p-8 gap-3 w-full justify-center ">
               <img src={Dashboard} alt="dashboard" className="w-6 h-6" />

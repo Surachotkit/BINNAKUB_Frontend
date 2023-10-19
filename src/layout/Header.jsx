@@ -44,7 +44,7 @@ export default function Header() {
 
         <div className="flex gap-4">
           {/*  check login is true disable Search */}
-          <Search />
+          {authUser ? <Search /> : ""}
           <div className="flex gap-4">
             {authUser ? (
               <button

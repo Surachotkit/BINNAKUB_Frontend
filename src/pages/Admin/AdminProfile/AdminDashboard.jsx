@@ -1,7 +1,8 @@
 import React from 'react'
+import DashboardNotRecord from '../../UserProfile/DashboardNotrecord'
 
 export default function AdminDashboard() {
   return (
-    <div>AdminDashboard</div>
+    <div className='flex w-full h-[75vh] justify-center items-center'><DashboardNotRecord/></div>
   )
 }

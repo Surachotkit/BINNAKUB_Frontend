@@ -2,14 +2,31 @@ import { useAuth } from "../../../hooks/use-auth";
 import find from "../../../img/icon/find.png";
 import bitCoin from "../../../img/icon/btc.png";
 import AdminCreateToDatabase from "./AdminCreateToDatabase";
+import axios from "../../../config/axios";
+import { useState } from "react";
+// import { createLogger } from "vite";
 
 
 export default function AdminAddcoin() {
   const { isOpenAddcoinMore, setIsOpenAddcoin, setIsOpenAddcoinMore } = useAuth();
+  // upload photo
+  // const [createToDatabase, setCreateToDatabase] = useState([]);
+  const addCoin = async(data) => {
+    try {
+      const res = await axios.post('/admin/create', data)
+      console.log("🚀 ~ file: AdminAddcoin.jsx:15 ~ addCoin ~ res:", res)      
+    } catch (error) {
+      console.log(error)
+    }
+
+    // const newPhoto = res.data.post
+    // setCreateToDatabase([newPhoto, ...createToDatabase])
+  }
+
   return (
     <div className="flex flex-col gap-2 px-4">
       <div className="flex text-lg justify-between ">
-        {isOpenAddcoinMore && <AdminCreateToDatabase />}
+        {isOpenAddcoinMore && <AdminCreateToDatabase addCoin={addCoin}/>}
 
         <span className="font-bold ">Add Coin</span>
         <button

@@ -16,7 +16,7 @@ import AdminMarketPage from "../pages/Admin/AdminMarket/AdminMarketPage";
 import AdminDashboard from "../pages/Admin/AdminProfile/AdminDashboard";
 import NotLogin from "../features/auth/NotLogin";
 import Authenicated from "../features/auth/Authenicated";
-import Loading from "../components/Loading";
+
 
 const router = createBrowserRouter([
   {
@@ -57,7 +57,7 @@ const router = createBrowserRouter([
       { path: "/profile/transactionhistory", element: <TransactionHistory /> },
       { path: "/profile/deposithistory", element: <DepositHistory /> },
       { path: "/profile/dashboard/norecord", element: <DashboardNotRecord /> },
-      // { path: "/profile/loading", element: <Loading /> },
+  
     ],
   },
 

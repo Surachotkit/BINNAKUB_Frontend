@@ -2,7 +2,7 @@ import { useAuth } from "../../hooks/use-auth";
 import btc from "../../img/icon/btc.png";
 import usdt from "../../img/icon/usdt.png";
 
-export default function PaymentBuy({ onClose }) {
+export default function PaymentBuy() {
 //   const { isOpen, toggleModal } = useAuth();
   const {isOpenBuy, toggleModalBuy} = useAuth()
   return (

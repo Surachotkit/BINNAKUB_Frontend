@@ -8,10 +8,7 @@ import { toast } from "react-toastify";
 
 export default function Deposit({ onClose }) {
   const { authUser } = useAuth();
-  // console.log(
-  //   "🚀 ~ file: Deposit.jsx:16 ~ Deposit ~ authUser:",
-  //   authUser.user_id
-  // );
+
   const [deposit, setDeposit] = useState({
     amount: "",
     user_id: authUser.user_id,
@@ -19,8 +16,7 @@ export default function Deposit({ onClose }) {
   const [topup, setTopup] = useState({
     quantity: ""
   })
-  // console.log("🚀 ~ file: Deposit.jsx:12 ~ Deposit ~ deposit:", deposit);
-  const navigate = useNavigate();
+
 
 
   const handleSubmitForm = (e) => {

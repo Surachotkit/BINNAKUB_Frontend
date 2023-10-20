@@ -1,12 +1,16 @@
 import { useState } from "react";
 import { useAuth } from "../../../hooks/use-auth";
 
-export default function AdminCreateToDatabase({ addCoin }) {
+export default function AdminCreateToDatabase({ addCoin, onClose }) {
+ 
+  const { setIsOpenAddcoinMore } = useAuth();
+
   const [file, setFile] = useState(null);
   const [input, setInput] = useState({
     coin_name: "",
     quantity: "",
   });
+  // const [onClose,setOnclose] = useState(false)
   const handleOnSubmit = async (e) => {
     try {
       e.preventDefault();
@@ -14,13 +18,16 @@ export default function AdminCreateToDatabase({ addCoin }) {
       formData.append("image_coin", file);
       formData.append("message", JSON.stringify(input));
       await addCoin(formData);
+      onClose()
+      
       
     } catch (err) {
       console.log(err);
     }
     // addCoin()
   };
-  const { setIsOpenAddcoinMore } = useAuth();
+
+
 
   return (
     <form

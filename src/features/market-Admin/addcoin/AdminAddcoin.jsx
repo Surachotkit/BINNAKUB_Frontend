@@ -4,13 +4,14 @@ import bitCoin from "../../../img/icon/btc.png";
 import AdminCreateToDatabase from "./AdminCreateToDatabase";
 import axios from "../../../config/axios";
 import { useState } from "react";
-// import { createLogger } from "vite";
+
 
 
 export default function AdminAddcoin() {
   const { isOpenAddcoinMore, setIsOpenAddcoin, setIsOpenAddcoinMore } = useAuth();
+  const [onClose, setOnClose] = useState(false);
+
   // upload photo
-  // const [createToDatabase, setCreateToDatabase] = useState([]);
   const addCoin = async(data) => {
     try {
       const res = await axios.post('/admin/create', data)
@@ -19,14 +20,16 @@ export default function AdminAddcoin() {
       console.log(error)
     }
 
-    // const newPhoto = res.data.post
-    // setCreateToDatabase([newPhoto, ...createToDatabase])
+  }
+
+  const Cancel = () => {
+    setIsOpenAddcoin(false)
   }
 
   return (
     <div className="flex flex-col gap-2 px-4">
       <div className="flex text-lg justify-between ">
-        {isOpenAddcoinMore && <AdminCreateToDatabase addCoin={addCoin}/>}
+        {isOpenAddcoinMore && <AdminCreateToDatabase addCoin={addCoin} onClose={() => Cancel()}/>}
 
         <span className="font-bold ">Add Coin</span>
         <button
@@ -66,7 +69,7 @@ export default function AdminAddcoin() {
       <div className="flex justify-center items-center w-full pt-4 gap-4">
         <button
           className="bg-gray-200 w-52 rounded-md hover:bg-gray-300 text-[#6D6D6D] h-full p-2"
-          onClick={() => setIsOpenAddcoin(false)}
+          onClick={() => Cancel()}
         >
           Cancel
         </button>

@@ -9,7 +9,7 @@ import { useState } from "react";
 
 export default function AdminAddcoin() {
   const { isOpenAddcoinMore, setIsOpenAddcoin, setIsOpenAddcoinMore } = useAuth();
-  const [onClose, setOnClose] = useState(false);
+  // const [onClose, setOnClose] = useState(false);
 
   // upload photo
   const addCoin = async(data) => {

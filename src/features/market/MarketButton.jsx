@@ -15,7 +15,7 @@ export default function MarketButton() {
     
   
   return (
-    <div className="flex gap-4 ">
+    <div className="flex gap-4 flex-1 ">
       <button disabled={!authUser} 
       className={isSell("buy")}
       onClick={toggleModalBuy}>

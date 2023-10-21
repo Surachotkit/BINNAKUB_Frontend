@@ -27,15 +27,17 @@ export default function AdminMarketForm() {
       console.log(err)
     }
   }
-  
+
 
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+       
+
         const { data: coinData } = await axios.get("/coinlist/market");
-        console.log("🚀 ~ file: MarketForm.jsx:20 ~ fetchData ~ coinData:", coinData)
-        console.log(coinData[0].getCoinList);
+        // console.log("🚀 ~ file: MarketForm.jsx:20 ~ fetchData ~ coinData:", coinData)
+        // console.log(coinData[0].getCoinList);
         const { data: realTimeData } = await axiosDefault.get("https://api.coincap.io/v2/assets");
 
         if (coinData[0] && realTimeData.data) {
@@ -48,13 +50,14 @@ export default function AdminMarketForm() {
               return {
                 coin_list_id: item1.coin_list_id,
                 coin_name: item1.coin_name,
+                image_coin: item1.image_coin,
                 price: parseFloat(matchedItem.priceUsd).toLocaleString(2),
                 change: parseFloat(matchedItem.changePercent24Hr).toLocaleString(2),
                 marketCap: parseFloat(matchedItem.marketCapUsd).toLocaleString(2),
                 amount: parseFloat(item1.quantity).toLocaleString(2),
               };
             }
-            console.log(item1.coin_list_id);
+            // console.log(item1.coin_list_id);
             return null;
           }).filter(Boolean);
           // console.log("🚀 ~ file: MarketForm.jsx:39 ~ combinedList ~ combinedList:", combinedList)
@@ -76,6 +79,7 @@ export default function AdminMarketForm() {
       {isOpenAddcoin && (
         <Modal>
           <AdminAddcoin />
+         
         </Modal>
       )}
 
@@ -102,6 +106,7 @@ export default function AdminMarketForm() {
             marketCap={el.marketCap}
             amount={el.amount}
             deleteCoin={deleteCoin}
+            photoCoin={el.image_coin}
           />
         ))}
   

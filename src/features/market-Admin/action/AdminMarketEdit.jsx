@@ -11,7 +11,7 @@ export default function AdminMarketEdit({amount,coin_list_id, deleteCoin}) {
   }
 
   return (
-    <div className='flex gap-4'>
+    <div className='flex flex-1 gap-4'>
       <img src={edit} alt="edit" className='flex w-5 cursor-pointer' onClick={() => setIsOpenAddQuantity(true)} />
       <img src={del} alt="del" className='flex w-5 cursor-pointer' onClick={handleClickDelete}/>
     </div>

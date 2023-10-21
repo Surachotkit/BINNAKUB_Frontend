@@ -1,35 +1,61 @@
 import { useAuth } from "../../../hooks/use-auth";
 import find from "../../../img/icon/find.png";
-import bitCoin from "../../../img/icon/btc.png";
 import AdminCreateToDatabase from "./AdminCreateToDatabase";
 import axios from "../../../config/axios";
 import { useState } from "react";
-
-
+import { useEffect } from "react";
+import ListCoin from "./ListCoin";
 
 export default function AdminAddcoin() {
-  const { isOpenAddcoinMore, setIsOpenAddcoin, setIsOpenAddcoinMore } = useAuth();
-  // const [onClose, setOnClose] = useState(false);
+  const { isOpenAddcoinMore, setIsOpenAddcoin, setIsOpenAddcoinMore } =
+    useAuth();
+
 
   // upload photo
-  const addCoin = async(data) => {
+  const addCoin = async (data) => {
     try {
-      const res = await axios.post('/admin/create', data)
-      console.log("🚀 ~ file: AdminAddcoin.jsx:15 ~ addCoin ~ res:", res)      
+      const res = await axios.post("/admin/create", data);
+      console.log("🚀 ~ file: AdminAddcoin.jsx:15 ~ addCoin ~ res:", res);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-
-  }
+  };
 
   const Cancel = () => {
-    setIsOpenAddcoin(false)
-  }
+    setIsOpenAddcoin(false);
+  };
+
+    // get coin Inactive
+    const [getCoinListInDatabase, setGetCoinListInDatabase] = useState([]);
+    console.log(
+      "🚀 ~ file: AdminMarketForm.jsx:20 ~ AdminMarketForm ~ getCoinListInDatabase:",
+      getCoinListInDatabase
+    );
+
+  useEffect(() => {
+    const fechListCoinInDatabase = async () => {
+      try {
+        const { data: coinListInDatabase } = await axios.get("/coinlist/list/database");
+        console.log(
+          "🚀 ~ file: AdminAddcoin.jsx:40 ~ useEffect ~ coinListInDatabase:",
+          coinListInDatabase
+        );
+        const list = coinListInDatabase[0].getCoinListInActive
+        console.log("🚀 ~ file: AdminAddcoin.jsx:44 ~ fechListCoinInDatabase ~ list:", list)
+        setGetCoinListInDatabase(coinListInDatabase[0].getCoinListInActive);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fechListCoinInDatabase();
+  }, []);
 
   return (
     <div className="flex flex-col gap-2 px-4">
       <div className="flex text-lg justify-between ">
-        {isOpenAddcoinMore && <AdminCreateToDatabase addCoin={addCoin} onClose={() => Cancel()}/>}
+        {isOpenAddcoinMore && (
+          <AdminCreateToDatabase addCoin={addCoin} onClose={() => Cancel()} />
+        )}
 
         <span className="font-bold ">Add Coin</span>
         <button
@@ -40,29 +66,9 @@ export default function AdminAddcoin() {
         </button>
       </div>
 
-      <div className="flex relative">
-        <img
-          src={find}
-          alt="find"
-          className="flex absolute left-1 top-1 h-4 w-4 "
-        />
-        <input
-          type="text"
-          className="border w-full  pl-7  rounded-md"
-          placeholder="search coin"
-        />
-      </div>
 
-      <div className="flex  overflow-y-scroll hover:bg-gray-50 cursor-pointer">
-        <div className="flex items-center justify-center  ">
-          <img src={bitCoin} alt="bitcoin" className="flex w-7 h-7" />
-        </div>
-        <div className="flex flex-col justify-center p-2  ">
-          <span>Bitcoin</span>
-        </div>
-        <span className="flex items-center justify-center text-sm text-gray-500">
-          BTC
-        </span>
+      <div className="flex flex-col gap-2 overflow-y-scroll ">
+        {getCoinListInDatabase.map(el => <ListCoin coinList={el.coin_name} photoCoin={el.image_coin} />) }
       </div>
 
       {/* button */}

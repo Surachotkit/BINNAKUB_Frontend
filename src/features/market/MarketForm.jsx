@@ -28,7 +28,9 @@ export default function MarketForm() {
             const matchedItem = listCoinRealtime.find(item2 => item2.symbol === item1.coin_name);
             if (matchedItem) {
               return {
+                coin_list_id: item1.coin_list_id,
                 coin_name: item1.coin_name,
+                image_coin: item1.image_coin,
                 price: parseFloat(matchedItem.priceUsd).toLocaleString(2),
                 change: parseFloat(matchedItem.changePercent24Hr).toLocaleString(2),
                 marketCap: parseFloat(matchedItem.marketCapUsd).toLocaleString(2),
@@ -70,11 +72,13 @@ export default function MarketForm() {
       <div className="flex flex-col justify-center items-center">
         {mergeList.map(el => (
           <MarketItem 
+            coin_list_id={el.coin_list_id}
             coinName={el.coin_name} 
             price={el.price} 
             change={el.change} 
             marketCap={el.marketCap}
             amount={el.amount}
+            photoCoin={el.image_coin}
           />
         ))}
       </div>

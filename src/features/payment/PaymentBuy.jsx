@@ -1,10 +1,29 @@
+import { useEffect } from "react";
 import { useAuth } from "../../hooks/use-auth";
 import btc from "../../img/icon/btc.png";
 import usdt from "../../img/icon/usdt.png";
+import { useState } from "react";
+// import axios from "axios";
+import axios from "../../config/axios";
+
 
 export default function PaymentBuy() {
 //   const { isOpen, toggleModal } = useAuth();
   const {isOpenBuy, toggleModalBuy} = useAuth()
+
+  // const [allItem, setAllItem] = useState([])
+  // console.log("🚀 ~ file: PaymentBuy.jsx:11 ~ PaymentBuy ~ allItem:", allItem)
+
+  // useEffect( async () => {
+  //   try{
+  //     const getQuantityInDatabase = await axios.get("/coinlist/market");
+  //     console.log("🚀 ~ file: PaymentBuy.jsx:17 ~ useEffect ~ getQuantityInDatabase:", getQuantityInDatabase)
+  //     setAllItem(getQuantityInDatabase.data[0].getCoinList)
+  //   }catch(err){
+  //     console.log(err)
+  //   }
+  // }, [])
+
   return (
     <div>
       <div className="flex justify-between p-4 text-xl">

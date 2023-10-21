@@ -5,18 +5,17 @@ import HomePage from "../pages/Home/HomePage";
 import LoginPage from "../pages/Login/LoginPage";
 import RegisterPage from "../pages/Register/RegisterPage";
 import MarketPage from "../pages/Market/MarketPage";
-import ProfilePage from "../pages/UserProfile/ProfilePage";
 import DepositHistory from "../pages/UserProfile/DepositHistory";
 import TransactionHistory from "../pages/UserProfile/TransactionHistory";
 import Dashboard from "../pages/UserProfile/Dashboard";
 import Profile from "../layout/Profile";
 import DashboardNotRecord from "../pages/UserProfile/DashboardNotrecord";
-import CheckIsAdmin from "../features/auth/CheckIsAdmin";
 import AdminMarketPage from "../pages/Admin/AdminMarket/AdminMarketPage";
 import AdminDashboard from "../pages/Admin/AdminProfile/AdminDashboard";
 import NotLogin from "../features/auth/NotLogin";
 import Authenicated from "../features/auth/Authenicated";
-
+import AdminTransactionHistory from "../pages/Admin/AdminProfile/AdminTransactionHistory";
+import AdminDepositHistory from "../pages/Admin/AdminProfile/AdminDepositHistory";
 
 const router = createBrowserRouter([
   {
@@ -46,18 +45,15 @@ const router = createBrowserRouter([
   {
     path: "/profile",
     element: (
-    
-        <NotLogin>
-          <Profile />
-        </NotLogin>
-      
+      <NotLogin>
+        <Profile />
+      </NotLogin>
     ),
     children: [
       { path: "/profile/dashboard", element: <Dashboard /> },
       { path: "/profile/transactionhistory", element: <TransactionHistory /> },
       { path: "/profile/deposithistory", element: <DepositHistory /> },
       { path: "/profile/dashboard/norecord", element: <DashboardNotRecord /> },
-  
     ],
   },
 
@@ -74,23 +70,22 @@ const router = createBrowserRouter([
       { path: "/admin/profile/dashboard", element: <AdminDashboard /> },
       {
         path: "/admin/profile/transactionhistory",
-        element: <TransactionHistory />,
+        element: <AdminTransactionHistory />,
       },
-      { path: "/admin/profile/deposithistory", element: <DepositHistory /> },
       {
-        path: "/admin/profile/dashboard/norecord",
-        element: <DashboardNotRecord />,
+        path: "/admin/profile/deposithistory",
+        element: <AdminDepositHistory />,
       },
-      
     ],
   },
 
   {
     path: "/admin",
-    element: 
-    <Authenicated>
-      <Layout />
-    </Authenicated>,
+    element: (
+      <Authenicated>
+        <Layout />
+      </Authenicated>
+    ),
     children: [
       // { path: "/admin/create", element: <Dashboard /> },
       // { path: "/admin/addquantity", element: <TransactionHistory /> },
@@ -98,8 +93,6 @@ const router = createBrowserRouter([
       { path: "/admin/market", element: <AdminMarketPage /> },
     ],
   },
-
-
 ]);
 
 export default function Route() {

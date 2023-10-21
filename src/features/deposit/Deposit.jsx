@@ -3,7 +3,6 @@ import usdt from "../../img/icon/usdt.png";
 import { useState } from "react";
 import { useAuth } from "../../hooks/use-auth";
 import axios from "../../config/axios";
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export default function Deposit({ onClose }) {

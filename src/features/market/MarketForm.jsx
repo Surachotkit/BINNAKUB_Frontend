@@ -10,7 +10,7 @@ import PaymentBuy from "../payment/PaymentBuy";
 import { useAuth } from "../../hooks/use-auth";
 
 export default function MarketForm() {
-  const { isOpenSell, toggleModalSell, isOpenBuy, toggleModalBuy } = useAuth();
+  const { isOpenSell, isOpenBuy } = useAuth();
   const [mergeList, setMergeList] = useState([]);
 
   useEffect(() => {

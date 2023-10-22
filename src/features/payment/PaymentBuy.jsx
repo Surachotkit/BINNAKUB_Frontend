@@ -1,41 +1,20 @@
-import { useEffect } from "react";
-import { useAuth } from "../../hooks/use-auth";
-import btc from "../../img/icon/btc.png";
+
 import usdt from "../../img/icon/usdt.png";
-import { useState } from "react";
-// import axios from "axios";
-import axios from "../../config/axios";
 
 
-export default function PaymentBuy() {
-//   const { isOpen, toggleModal } = useAuth();
-  const {isOpenBuy, toggleModalBuy} = useAuth()
 
-  // const [allItem, setAllItem] = useState([])
-  // console.log("🚀 ~ file: PaymentBuy.jsx:11 ~ PaymentBuy ~ allItem:", allItem)
-
-  // useEffect( async () => {
-  //   try{
-  //     const getQuantityInDatabase = await axios.get("/coinlist/market");
-  //     console.log("🚀 ~ file: PaymentBuy.jsx:17 ~ useEffect ~ getQuantityInDatabase:", getQuantityInDatabase)
-  //     setAllItem(getQuantityInDatabase.data[0].getCoinList)
-  //   }catch(err){
-  //     console.log(err)
-  //   }
-  // }, [])
-
+export default function PaymentBuy({coinName,price,image_coin,setIsOpenBuy}) {
   return (
     <div>
       <div className="flex justify-between p-4 text-xl">
         <div className="flex items-center gap-2">
-          <img src={btc} alt="usd" />
-          <span className="font-bold">Bitcoin</span>
-          <span className="flex text-sm">(BTC)</span>
+          <img src={image_coin} alt="usd" className="w-8" />
+          <span className="font-bold">{coinName}</span>
         </div>
       </div>
 
       <div className="flex justify-between">
-        <span className="flex px-6 pb-4">$ 21,644.03</span>
+        <span className="flex px-6 pb-4">$ {price}</span>
         <span className="flex px-6  text-gray-400 text-sm">
           Balance : 5,000 USDT
         </span>
@@ -49,8 +28,8 @@ export default function PaymentBuy() {
             placeholder="Please enter amount"
           />
           <div className="flex justify-center items-center gap-1 bg-gray-200 w-[8rem] rounded-lg">
-            <img src={btc} alt="usd" className="w-8" />
-            <span>BTC</span>
+            <img src={image_coin} alt="usd" className="w-8" />
+            <span>{coinName}</span>
           </div>
         </div>
 
@@ -84,7 +63,7 @@ export default function PaymentBuy() {
           </button>
           <button
             className="bg-gray-200 w-full rounded-md hover:bg-gray-300 text-[#6D6D6D] h-full p-2"
-            onClick={toggleModalBuy}
+            onClick={() => setIsOpenBuy(false)}
           >
             Cancel
           </button>

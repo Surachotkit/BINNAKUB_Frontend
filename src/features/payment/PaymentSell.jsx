@@ -1,23 +1,20 @@
-import { useAuth } from "../../hooks/use-auth";
-import btc from "../../img/icon/btc.png";
 import usdt from "../../img/icon/usdt.png";
 
-export default function PaymentSell() {
-  const {isOpenSell, toggleModalSell} = useAuth()
+export default function PaymentSell({coinName,price,image_coin,setIsOpenSell}) {
+ 
   return (
     <div>
       <div className="flex justify-between p-4 text-xl">
         <div className="flex items-center gap-2">
-          <img src={btc} alt="usd" />
-          <span className="font-bold">Bitcoin</span>
-          <span className="flex text-sm">(BTC)</span>
+          <img src={image_coin} alt="usd" className="w-8"/>
+          <span className="font-bold">{coinName}</span>
         </div>
       </div>
 
       <div className="flex justify-between">
-        <span className="flex px-6 pb-4">$ 21,644.03</span>
+        <span className="flex px-6 pb-4">$ {price}</span>
         <span className="flex px-6  text-gray-400 text-sm">
-          Balance : 12 BTC
+          Balance : 12 {coinName}
         </span>
       </div>
 
@@ -29,8 +26,8 @@ export default function PaymentSell() {
             placeholder="Please enter amount"
           />
           <div className="flex justify-center items-center gap-1 bg-gray-200 w-[8rem] rounded-lg">
-            <img src={btc} alt="usd" className="w-8" />
-            <span>BTC</span>
+            <img src={image_coin} alt="usd" className="w-8" />
+            <span>{coinName}</span>
           </div>
         </div>
 
@@ -64,7 +61,7 @@ export default function PaymentSell() {
           </button>
           <button
             className="bg-gray-200 w-full rounded-md hover:bg-gray-300 text-[#6D6D6D] h-full p-2"
-            onClick={toggleModalSell}
+            onClick={() => setIsOpenSell(false)}
           >
             Cancel
           </button>

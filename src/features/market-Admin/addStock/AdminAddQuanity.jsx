@@ -3,31 +3,57 @@ import fee from "../../../img/icon/fee.png"
 import coin from "../../../img/icon/coin.png"
 import { useState } from "react";
 import { useAuth } from "../../../hooks/use-auth";
+import axios from "../../../config/axios";
 
 
-export default function AdminAddQuanity() {
+
+export default function AdminAddQuanity({amount,coinName }) {
+  console.log("🚀 ~ file: AdminAddQuanity.jsx:11 ~ AdminAddQuanity ~ coinName:", coinName)
+  console.log("🚀 ~ file: AdminAddQuanity.jsx:10 ~ AdminAddQuanity ~ amount:", amount)
+
+  
+
   const [addQuantity, setAddQuantity] = useState({
-    quantity: ""
+    quantity: "",
+    coin_name: ""
   });
 
   const { setIsOpenAddQuantity } = useAuth();
   const Cancel = () => {
     setIsOpenAddQuantity(false)
   }
+
+  const handleSubmit = () => {
+    try{
+      const body = {
+        quantity: addQuantity.quantity,
+        coin_name: coinName
+        
+      }
+      axios.patch("/admin/addquantity", body)
+    }catch(err){
+      console.log(err)
+    }
+  }
+
+
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <div className="flex justify-between p-4 text-xl">
         <div className="flex items-center gap-2">
           <img src={fee} alt="fee" className="w-8" />
           <span className="font-bold">Add Quantity</span>
         </div>
       </div>
-
+  
       <div className="flex justify-end pb-2">
         <span className="flex px-6  text-gray-400 text-sm">
-          Amount : 5000
+          Amount : {amount}
+         
         </span>
       </div>
+
 
       <div className="flex flex-col items-center gap-5">
         <div className="flex gap-2 w-full px-6">

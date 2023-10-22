@@ -1,8 +1,9 @@
 import { useAuth } from "../../hooks/use-auth";
 
-export default function MarketButton() {
+export default function MarketButton({data, setIsOpenBuy, setIsOpenSell}) {
+  console.log("🚀 ~ file: MarketButton.jsx:4 ~ MarketButton ~ data:", data)
   
-  const { toggleModalBuy, toggleModalSell, authUser } = useAuth();
+  const { authUser } = useAuth();
   
   const isSell = (params) => { 
 
@@ -18,13 +19,13 @@ export default function MarketButton() {
     <div className="flex gap-4 flex-1 ">
       <button disabled={!authUser} 
       className={isSell("buy")}
-      onClick={toggleModalBuy}>
+      onClick={() => setIsOpenBuy(true)}>
         Buy
       </button>
       <button
       disabled={!authUser}
         className={isSell("sell")}
-        onClick={toggleModalSell}
+        onClick={() => setIsOpenSell(true)}
       >
         Sell
       </button>

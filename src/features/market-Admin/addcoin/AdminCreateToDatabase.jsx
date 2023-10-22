@@ -31,7 +31,7 @@ export default function AdminCreateToDatabase({ addCoin, onClose }) {
 
   return (
     <form
-      className="flex flex-col justify-center items-center w-72 gap-2 py-4 absolute right-[14.5rem] bottom-[13.7rem] mx-auto border rounded-lg shadow-xl p-2  bg-white"
+      className="flex flex-col justify-center items-center w-72 gap-2 py-4 absolute right-[14.2rem] bottom-[18.2rem] mx-auto border rounded-lg shadow-xl p-2  bg-white"
       onSubmit={handleOnSubmit}
     >
       <div className="flex flex-col gap-3">

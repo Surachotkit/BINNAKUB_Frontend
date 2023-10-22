@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom";
 import logo from "../img/icon/logo.png";
-import Search from "./Search";
-
 import { useAuth } from "../hooks/use-auth";
 import { useState } from "react";
 import Modal from "../components/Modal";
@@ -44,7 +42,7 @@ export default function Header() {
 
         <div className="flex gap-4">
           {/*  check login is true disable Search */}
-          {authUser ? <Search /> : ""}
+          {/* {authUser ? <Search /> : ""} */}
           <div className="flex gap-4">
             {authUser ? (
               <button

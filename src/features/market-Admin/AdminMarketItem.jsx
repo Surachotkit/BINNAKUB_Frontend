@@ -1,31 +1,46 @@
-import { useEffect } from "react";
-import bitCoin from "../../img/icon/btc.png";
-import axios from "axios";
+
 import { useState } from "react";
+import Modal from "../../components/Modal";
 import AdminMarketEdit from "./action/AdminMarketEdit";
+import AdminAddQuanity from "./addStock/AdminAddQuanity";
+import AdminAddcoin from "./addcoin/AdminAddcoin";
+import { useAuth } from "../../hooks/use-auth";
 
 
-export default function AdminMarketItem({ coinName, price, change, marketCap, amount, coin_list_id, deleteCoin,photoCoin }) {
+export default function AdminMarketItem({setIsOpenAddcoin,isOpenAddcoin,coinName, price, change, marketCap, amount, coin_list_id, deleteCoin,photoCoin}) {
+  // const { isOpenAddcoin, setIsOpenAddcoin } = useAuth();
 
-
+  const [isModalOpen , setIsModalOpen] = useState(false)
+  // const [isOpenAddcoin, setIsOpenAddcoin] = useState(false)
   return (
-    <div className="flex flex-col gap-5 flex-1 w-[180vh]">
-      <div className="flex items-center justify-evenly hover:bg-gray-50 py-5 border-b">
-        <span className="flex flex-1 items-center justify-center gap-2">
-      
+    <div className="flex flex-col flex-1 w-[180vh]">
+      <div className="flex items-center justify-evenly hover:bg-gray-50 py-5 border-b ">
+        
+      {isModalOpen && (
+        <Modal>
+          <AdminAddQuanity coinName={coinName} amount={amount} />
+        </Modal>
+      )}
+    
+    {isOpenAddcoin && (
+        <Modal>
+          <AdminAddcoin coin_list_id={coin_list_id} coinName={coinName} setIsOpenAddcoin={setIsOpenAddcoin}/>
+         
+        </Modal>
+      )}
+        <span className="flex flex-1 items-center justify-center gap-2 pl-2">
           <img src={photoCoin} alt="imgcoin" className=" w-9 h-9" />
-
-          <div className="flex flex-col">
+          <div className="flex flex-col ">
             <span>{coinName}</span>
           </div>
         </span>
-        <span className="flex flex-1">{price}</span>
-        <span className="flex flex-1 text-green-500">{change}%</span>
+        <span className="flex flex-1 pl-20">{price}</span>
+        <span className="flex flex-1 text-green-500 ">{change}%</span>
         <span className="flex flex-1">{marketCap}</span>
-        <span className="flex flex-1">{amount}</span>
-        <AdminMarketEdit amount={amount} coin_list_id={coin_list_id} deleteCoin={deleteCoin}/>
+        <span className="flex flex-1 pl-5">{amount}</span>
+        <AdminMarketEdit  coin_list_id={coin_list_id} deleteCoin={deleteCoin} setIsModalOpen={setIsModalOpen}/>
 
-       
+      
       </div>
     </div>
   );

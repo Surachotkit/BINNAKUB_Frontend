@@ -3,16 +3,19 @@ import AdminMarketItem from "./AdminMarketItem";
 import AdminMarketMenu from "./AdminMarketMenu";
 import AdminAddcoin from "./addcoin/AdminAddcoin";
 import AdminButton from "./addcoin/AdminButton";
-import { useAuth } from "../../hooks/use-auth";
+
 import Modal from "../../components/Modal";
 import AdminAddQuanity from "./addStock/AdminAddQuanity";
 import { useState } from "react";
 import { useEffect } from "react";
 import axiosDefault from "axios";
 import axios from "../../config/axios";
+import { useAuth } from "../../hooks/use-auth";
 
 export default function AdminMarketForm() {
-  const { isOpenAddcoin, isOpenAddQuantity } = useAuth();
+  // const {  isOpenAddQuantity } = useAuth();
+  // const [isOpenAddcoin , setIsOpenAddcoin] = useState(false)
+  const { isOpenAddcoin, setIsOpenAddcoin } = useAuth();
 
   const [mergeList, setMergeList] = useState([]);
   console.log("🚀 ~ file: AdminMarketForm.jsx:18 ~ AdminMarketForm ~ mergeList:", mergeList)
@@ -27,6 +30,15 @@ export default function AdminMarketForm() {
       console.log(err)
     }
   }
+
+  // const editAddQuantity = async (CoinId) => {
+  //   try{
+  //     mergeList.map(el => el.coin_list_id !== CoinId) 
+
+  //   }catch(err){
+  //     console.log(err)
+  //   }
+  // }
 
 
 
@@ -60,8 +72,11 @@ export default function AdminMarketForm() {
             // console.log(item1.coin_list_id);
             return null;
           }).filter(Boolean);
-          // console.log("🚀 ~ file: MarketForm.jsx:39 ~ combinedList ~ combinedList:", combinedList)
-
+          console.log("🚀 ~ file: MarketForm.jsx:39 ~ combinedList ~ combinedList:", combinedList)
+          console.log("🚀 ~ file: MarketForm.jsx:39 ~ combinedList ~ combinedList:", combinedList[0].coin_list_id)
+          console.log("🚀 ~ file: MarketForm.jsx:39 ~ combinedList ~ combinedList:", combinedList[0].amount)
+          // const sum = combinedList.map(el => el.coin_list_id ,el.amount)
+          // console.log(sum);
           setMergeList(combinedList);
         }
       } catch (err) {
@@ -76,18 +91,20 @@ export default function AdminMarketForm() {
 
   return (
     <div className="flex flex-col gap-4">
-      {isOpenAddcoin && (
+      {/* {isOpenAddcoin && (
         <Modal>
-          <AdminAddcoin />
+          
+          <AdminAddcoin  setIsOpenAddcoin={setIsOpenAddcoin}/>
          
         </Modal>
-      )}
+      )} */}
 
-      {isOpenAddQuantity && (
+      {/* {isOpenAddQuantity && (
         <Modal>
-          <AdminAddQuanity />
+   
+         <AdminAddQuanity amount={mergeList.map(el => el.amount)} coin_list_id={mergeList.map(el => el.coin_list_id)} />
         </Modal>
-      )}
+      )} */}
 
       <div className="flex justify-center items-center">
         <MarketContent />
@@ -107,10 +124,13 @@ export default function AdminMarketForm() {
             amount={el.amount}
             deleteCoin={deleteCoin}
             photoCoin={el.image_coin}
+            setIsOpenAddcoin={setIsOpenAddcoin}
+            isOpenAddcoin={isOpenAddcoin}
+            // mergeList={mergeList}
           />
         ))}
   
-        <AdminButton />
+        <AdminButton setIsOpenAddcoin={() => setIsOpenAddcoin(true)} />
       </div>
     </div>
   );

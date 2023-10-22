@@ -6,11 +6,12 @@ import { useState } from "react";
 import { useEffect } from "react";
 import ListCoin from "./ListCoin";
 
-export default function AdminAddcoin() {
-  const { isOpenAddcoinMore, setIsOpenAddcoin, setIsOpenAddcoinMore } =
-    useAuth();
+export default function AdminAddcoin({coin_list_id ,coinName,setIsOpenAddcoin}) {
+console.log("🚀 ~ file: AdminAddcoin.jsx:10 ~ AdminAddcoin ~ coinName:", coinName)
+console.log("🚀 ~ file: AdminAddcoin.jsx:10 ~ AdminAddcoin ~ coin_list_id:", coin_list_id)
 
-
+  const [isOpenAddcoinMore , setIsOpenAddcoinMore] = useState(false)
+    
   // upload photo
   const addCoin = async (data) => {
     try {
@@ -27,21 +28,21 @@ export default function AdminAddcoin() {
 
     // get coin Inactive
     const [getCoinListInDatabase, setGetCoinListInDatabase] = useState([]);
-    console.log(
-      "🚀 ~ file: AdminMarketForm.jsx:20 ~ AdminMarketForm ~ getCoinListInDatabase:",
-      getCoinListInDatabase
-    );
+    // console.log(
+    //   "🚀 ~ file: AdminMarketForm.jsx:20 ~ AdminMarketForm ~ getCoinListInDatabase:",
+    //   getCoinListInDatabase
+    // );
 
   useEffect(() => {
     const fechListCoinInDatabase = async () => {
       try {
         const { data: coinListInDatabase } = await axios.get("/coinlist/list/database");
-        console.log(
-          "🚀 ~ file: AdminAddcoin.jsx:40 ~ useEffect ~ coinListInDatabase:",
-          coinListInDatabase
-        );
+        // console.log(
+        //   "🚀 ~ file: AdminAddcoin.jsx:40 ~ useEffect ~ coinListInDatabase:",
+        //   coinListInDatabase
+        // );
         const list = coinListInDatabase[0].getCoinListInActive
-        console.log("🚀 ~ file: AdminAddcoin.jsx:44 ~ fechListCoinInDatabase ~ list:", list)
+        // console.log("🚀 ~ file: AdminAddcoin.jsx:44 ~ fechListCoinInDatabase ~ list:", list)
         setGetCoinListInDatabase(coinListInDatabase[0].getCoinListInActive);
       } catch (err) {
         console.log(err);
@@ -67,7 +68,7 @@ export default function AdminAddcoin() {
       </div>
 
 
-      <div className="flex flex-col gap-2 overflow-y-scroll ">
+      <div className="flex flex-col gap-2 overflow-y-auto h-[15rem]">
         {getCoinListInDatabase.map(el => <ListCoin coinList={el.coin_name} photoCoin={el.image_coin} />) }
       </div>
 

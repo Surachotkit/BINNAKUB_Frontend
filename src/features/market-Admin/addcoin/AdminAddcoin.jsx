@@ -6,9 +6,8 @@ import { useState } from "react";
 import { useEffect } from "react";
 import ListCoin from "./ListCoin";
 
-export default function AdminAddcoin({coin_list_id ,coinName,setIsOpenAddcoin}) {
-console.log("🚀 ~ file: AdminAddcoin.jsx:10 ~ AdminAddcoin ~ coinName:", coinName)
-console.log("🚀 ~ file: AdminAddcoin.jsx:10 ~ AdminAddcoin ~ coin_list_id:", coin_list_id)
+export default function AdminAddcoin({setIsOpenAddcoin}) {
+
 
   const [isOpenAddcoinMore , setIsOpenAddcoinMore] = useState(false)
     
@@ -28,10 +27,7 @@ console.log("🚀 ~ file: AdminAddcoin.jsx:10 ~ AdminAddcoin ~ coin_list_id:", c
 
     // get coin Inactive
     const [getCoinListInDatabase, setGetCoinListInDatabase] = useState([]);
-    // console.log(
-    //   "🚀 ~ file: AdminMarketForm.jsx:20 ~ AdminMarketForm ~ getCoinListInDatabase:",
-    //   getCoinListInDatabase
-    // );
+    console.log("🚀 ~ file: AdminAddcoin.jsx:31 ~ AdminAddcoin ~ getCoinListInDatabase:", getCoinListInDatabase)
 
   useEffect(() => {
     const fechListCoinInDatabase = async () => {
@@ -41,7 +37,7 @@ console.log("🚀 ~ file: AdminAddcoin.jsx:10 ~ AdminAddcoin ~ coin_list_id:", c
         //   "🚀 ~ file: AdminAddcoin.jsx:40 ~ useEffect ~ coinListInDatabase:",
         //   coinListInDatabase
         // );
-        const list = coinListInDatabase[0].getCoinListInActive
+        // const list = coinListInDatabase[0].getCoinListInActive
         // console.log("🚀 ~ file: AdminAddcoin.jsx:44 ~ fechListCoinInDatabase ~ list:", list)
         setGetCoinListInDatabase(coinListInDatabase[0].getCoinListInActive);
       } catch (err) {
@@ -69,7 +65,7 @@ console.log("🚀 ~ file: AdminAddcoin.jsx:10 ~ AdminAddcoin ~ coin_list_id:", c
 
 
       <div className="flex flex-col gap-2 overflow-y-auto h-[15rem]">
-        {getCoinListInDatabase.map(el => <ListCoin coinList={el.coin_name} photoCoin={el.image_coin} />) }
+        {getCoinListInDatabase.map(el => <ListCoin Cancel={Cancel} coinId={el.coin_list_id} coinList={el.coin_name} photoCoin={el.image_coin} status={el.status} />) }
       </div>
 
       {/* button */}

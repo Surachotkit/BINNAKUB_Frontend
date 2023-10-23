@@ -87,9 +87,6 @@ const router = createBrowserRouter([
       </Authenicated>
     ),
     children: [
-      // { path: "/admin/create", element: <Dashboard /> },
-      // { path: "/admin/addquantity", element: <TransactionHistory /> },
-      // { path: "/admin/addcoin", element: <DepositHistory /> },
       { path: "/admin/market", element: <AdminMarketPage /> },
     ],
   },

@@ -5,9 +5,9 @@ export default function ListCoin({Cancel,coinId,coinList,photoCoin,status}) {
   const [listCoin, setListCoin] = useState({
     coin_list_id: coinId,
     coin_name: coinList,
-    // status: status
+
   })
-  // console.log("🚀 ~ file: ListCoin.jsx:9 ~ ListCoin ~ listCoin:", listCoin)
+
   const handleClick = () => {
     try{
       setListCoin(listCoin)
@@ -26,7 +26,6 @@ export default function ListCoin({Cancel,coinId,coinList,photoCoin,status}) {
         <img src={photoCoin} alt="bitcoin" className="flex w-7 h-7" />
       </div>
       <div className="flex flex-col justify-center p-2  ">
-        {/* <span>{getCoinListInDatabase[0].coin_name}</span> */}
         <span>{coinList}</span>
       </div>
     </div>

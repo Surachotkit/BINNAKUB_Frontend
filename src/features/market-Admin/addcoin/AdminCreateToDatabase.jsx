@@ -10,7 +10,7 @@ export default function AdminCreateToDatabase({ addCoin, onClose }) {
     coin_name: "",
     quantity: "",
   });
-  // const [onClose,setOnclose] = useState(false)
+
   const handleOnSubmit = async (e) => {
     try {
       e.preventDefault();
@@ -24,7 +24,7 @@ export default function AdminCreateToDatabase({ addCoin, onClose }) {
     } catch (err) {
       console.log(err);
     }
-    // addCoin()
+
   };
 
 

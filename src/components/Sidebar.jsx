@@ -41,7 +41,7 @@ export default function Sidebar() {
           </Link>)}
         </div>
       </div>
-      {/* <DashboardComp /> */}
+  
     </div>
   );
 }

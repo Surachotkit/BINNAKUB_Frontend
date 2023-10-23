@@ -8,9 +8,6 @@ export default function Authenicated({ children }) {
     return <Navigate to="/" />;
   }
 
-  // if (authUser?.role !== "USER") {
-  //   return <Navigate to="/" />;
-  // }
 
   if (authUser?.role !== "ADMIN") {
     return <Navigate to="/" />;

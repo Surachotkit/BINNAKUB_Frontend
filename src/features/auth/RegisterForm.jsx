@@ -80,10 +80,10 @@ export default function RegisterForm() {
             {error.email && <InputErrorMessage message={error.email} />}
           </div>
 
-          {/* <span className="text-red-500 pb-5">Invalid</span> */}
+      
           <RegisterInput
             placeholder="PASSWORD"
-            type="text"
+            type="password"
             onChange={handleChangeInput}
             name="password"
             value={input.password}
@@ -91,10 +91,10 @@ export default function RegisterForm() {
           />
           {error.password && <InputErrorMessage message={error.password} />}
 
-          {/* <span className="text-red-500 pb-5">Invalid</span> */}
+     
           <RegisterInput
             placeholder="CONFIRM PASSWORD"
-            type="text"
+            type="password"
             onChange={handleChangeInput}
             name="confirmPassword"
             value={input.confirmPassword}

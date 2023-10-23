@@ -7,9 +7,6 @@ export default function Dashboard() {
       <div className="flex flex-col">
         <DashboardMenu />
         <DashboardItem />
-        <DashboardItem />
-        <DashboardItem />
-        <DashboardItem />
       </div>
     </div>
   );

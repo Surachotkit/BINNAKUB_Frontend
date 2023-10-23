@@ -1,8 +1,7 @@
 import { useState } from "react";
 import LoginInput from "./LoginInput";
 import { useAuth } from "../../hooks/use-auth";
-import { toast } from "react-toastify";
-import { Navigate } from "react-router-dom";
+
 
 
 export default function LoginForm() {
@@ -32,7 +31,7 @@ export default function LoginForm() {
             onChange={(e) => setInput({ ...input, email: e.target.value })}
           />
           
-          {/* <span className="text-red-500 pb-5">Invalid</span> */}
+   
           <LoginInput
             placeholder="PASSWORD"
             type="password"
@@ -40,7 +39,7 @@ export default function LoginForm() {
             onChange={(e) => setInput({ ...input, password: e.target.value })}
           />
 
-          {/* <span className="text-red-500 pb-5">Invalid</span> */}
+
           <button className="flex justify-center bg-red-500 rounded-md w-full p-2 text-[#D9D9D9] hover:bg-red-600 mt-5">
             LOGIN
           </button>

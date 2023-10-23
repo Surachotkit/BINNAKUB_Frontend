@@ -8,10 +8,7 @@ import axios from "../../../config/axios";
 
 
 export default function AdminAddQuanity({amount,coinName }) {
-  console.log("🚀 ~ file: AdminAddQuanity.jsx:11 ~ AdminAddQuanity ~ coinName:", coinName)
-  console.log("🚀 ~ file: AdminAddQuanity.jsx:10 ~ AdminAddQuanity ~ amount:", amount)
 
-  
 
   const [addQuantity, setAddQuantity] = useState({
     quantity: "",

@@ -1,8 +1,31 @@
 import { Link } from "react-router-dom";
 import TransactionItem from "../../features/profile/TransactionItem";
 import TransactionMenu from "../../features/profile/TransactionMenu";
+import axios from "../../config/axios";
+import { useEffect } from "react";
+import { useState } from "react";
 
 export default function TransactionHistory() {
+  const [ dataList, setDataList ] = useState([])
+  console.log("🚀 ~ file: TransactionHistory.jsx:10 ~ TransactionHistory ~ dataList:", dataList)
+
+  useEffect(() => {
+    const getDataTransactionProfile = async () => {
+      try {
+      const { data: getTransaction } = await axios.get("/user-profile/getTransactionProfile");
+      const AllItemTransaction = getTransaction.findTransactionHistory
+      setDataList(AllItemTransaction)
+     
+    
+      } catch (err) {
+        console.error(err);
+      }
+    };
+  
+    getDataTransactionProfile();
+  }, []);
+
+
   return (
     <div className="flex justify-center w-full pt-20">
       <div className="flex flex-col">
@@ -19,9 +42,8 @@ export default function TransactionHistory() {
           </Link>
         </div>
         <TransactionMenu />
-        <TransactionItem />
-        <TransactionItem />
-        <TransactionItem />
+        {dataList.map(el => <TransactionItem coin_name={el.coin_name} quantity={el.quantity} price={el.price} type={el.type} fee={el.fee}  />)}
+    
       </div>
     </div>
   );

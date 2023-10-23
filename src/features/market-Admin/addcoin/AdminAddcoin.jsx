@@ -1,5 +1,4 @@
-import { useAuth } from "../../../hooks/use-auth";
-import find from "../../../img/icon/find.png";
+
 import AdminCreateToDatabase from "./AdminCreateToDatabase";
 import axios from "../../../config/axios";
 import { useState } from "react";
@@ -33,12 +32,7 @@ export default function AdminAddcoin({setIsOpenAddcoin}) {
     const fechListCoinInDatabase = async () => {
       try {
         const { data: coinListInDatabase } = await axios.get("/coinlist/list/database");
-        // console.log(
-        //   "🚀 ~ file: AdminAddcoin.jsx:40 ~ useEffect ~ coinListInDatabase:",
-        //   coinListInDatabase
-        // );
-        // const list = coinListInDatabase[0].getCoinListInActive
-        // console.log("🚀 ~ file: AdminAddcoin.jsx:44 ~ fechListCoinInDatabase ~ list:", list)
+
         setGetCoinListInDatabase(coinListInDatabase[0].getCoinListInActive);
       } catch (err) {
         console.log(err);

@@ -4,8 +4,7 @@ export default function DashboardMenu() {
       <div className="flex justify-evenly  w-[100vh] p-2 border-b-2">
         <span>Name</span>
         <span>Amount</span>
-        <span>Price</span>
-        <span>Profit & Loss</span>
+        <span>Price ( $USDT )</span>
       </div>
     </div>
   );

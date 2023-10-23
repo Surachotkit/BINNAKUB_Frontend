@@ -15,7 +15,7 @@ export default function AdminMarketForm() {
   const { isOpenAddcoin, setIsOpenAddcoin } = useAuth();
 
   const [mergeList, setMergeList] = useState([]);
-  // console.log("🚀 ~ file: AdminMarketForm.jsx:18 ~ AdminMarketForm ~ mergeList:", mergeList)
+
   
   // del coin
   const deleteCoin = async (CoinId) => {
@@ -28,14 +28,7 @@ export default function AdminMarketForm() {
     }
   }
 
-  // const editAddQuantity = async (CoinId) => {
-  //   try{
-  //     mergeList.map(el => el.coin_list_id !== CoinId) 
 
-  //   }catch(err){
-  //     console.log(err)
-  //   }
-  // }
 
 
 
@@ -45,8 +38,6 @@ export default function AdminMarketForm() {
        
 
         const { data: coinData } = await axios.get("/coinlist/market");
-        // console.log("🚀 ~ file: MarketForm.jsx:20 ~ fetchData ~ coinData:", coinData)
-        // console.log(coinData[0].getCoinList);
         const { data: realTimeData } = await axiosDefault.get("https://api.coincap.io/v2/assets");
 
         if (coinData[0] && realTimeData.data) {
@@ -94,12 +85,6 @@ export default function AdminMarketForm() {
         </Modal>
       )}
 
-      {/* {isOpenAddQuantity && (
-        <Modal>
-   
-         <AdminAddQuanity amount={mergeList.map(el => el.amount)} coin_list_id={mergeList.map(el => el.coin_list_id)} />
-        </Modal>
-      )} */}
 
       <div className="flex justify-center items-center">
         <MarketContent />
@@ -119,7 +104,7 @@ export default function AdminMarketForm() {
             amount={el.amount}
             deleteCoin={deleteCoin}
             photoCoin={el.image_coin}
-            // mergeList={mergeList}
+
           />
         ))}
   

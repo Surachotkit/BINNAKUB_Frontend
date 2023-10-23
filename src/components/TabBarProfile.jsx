@@ -18,7 +18,7 @@ export default function TabBarProfile() {
         <div className="flex bg-white justify-evenly w-[70vh]  p-2 rounded-xl">
           <div className="flex flex-col ">
             <span className="font-bold">Total</span>
-            <span>$ 1.50</span>
+            <span className="flex justify-center">-</span>
           </div>
           <div className="flex justify-center items-center flex-col">
             <span className="font-bold">User ID</span>

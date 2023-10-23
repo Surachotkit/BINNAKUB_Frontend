@@ -1,37 +1,55 @@
 import usd from "../../img/icon/usd.png";
 import usdt from "../../img/icon/usdt.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "../../hooks/use-auth";
 import axios from "../../config/axios";
 import { toast } from "react-toastify";
+import constantStatus from '../../utils/constant/status';
+
 
 export default function Deposit({ onClose }) {
   const { authUser } = useAuth();
-
   const [deposit, setDeposit] = useState({
     amount: "",
     user_id: authUser.user_id,
   });
-  const [topup, setTopup] = useState({
-    quantity: ""
-  })
 
 
-
-  const handleSubmitForm = (e) => {
+  const handleSubmitForm = async (e) => {
     e.preventDefault();
     setDeposit(deposit);
-    axios.post("/deposit/create", deposit);
-    axios.patch("/deposit/topup", topup)
-    toast("Deposit success")
-    onClose()
-    // navigate("/");
-  };
-  // const handleClickAddTopup = () => {
 
-  //   setTopup(topup)
-  //   axios.patch("/deposit/topup", topup )
-  // }
+    const bodyForValidate = {
+        user_id: authUser.user_id
+    };
+    let responseValue; 
+    try {
+        const checkValidate = await axios.post('/deposit/validate', bodyForValidate);
+        console.log('Check Validate Response:', checkValidate.data.response.validate);
+  
+        if (checkValidate.data.response.validate === false) {
+            responseValue = await axios.post("/deposit/create", deposit);
+            if(responseValue.data.response.status === constantStatus.SUCCEDD){ 
+                toast.success("Deposit Success")
+                onClose()
+            }
+        } else if (checkValidate.data.response.validate === true) {
+            responseValue = await axios.patch("/deposit/topup", deposit); 
+            console.log("🚀 ~ file: Deposit.jsx:41 ~ handleSubmitForm ~ responseValue:", responseValue)
+            if(responseValue.data.response.status === constantStatus.SUCCEDD){ 
+                toast.success("Top Up Success")
+                onClose()
+            }
+        } else {
+            console.log('Deposit validation failed or other status:', checkValidate.data.response.status);
+        }
+    } catch (error) {
+        console.error('Error during deposit validation or creation:', error);
+    }
+  };
+  
+  useEffect(() => {
+  }, [])
 
   return (
     <form onSubmit={handleSubmitForm}>

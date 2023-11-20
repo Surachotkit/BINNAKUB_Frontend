@@ -1,19 +1,21 @@
 import { useState } from "react";
 import axios from "../../../config/axios";
 import { useEffect } from "react";
+import { useAuth } from "../../../hooks/use-auth";
 
-export default function ListCoin({Cancel,coinId,coinList,photoCoin,status,fechListCoinInDatabase,fetchData, SetRefresh,refresh}) {
+export default function ListCoin({Cancel,coinId,coinList,photoCoin,status,fechListCoinInDatabases}) {
   const [listCoin, setListCoin] = useState({
     coin_list_id: coinId,
     coin_name: coinList,
 
   })
+  const {SetRefresh,refresh} =useAuth()
 
-  const handleClick = () => {
+  const handleClick = async () => {
     try{
       setListCoin(listCoin)
       console.log(listCoin)
-      axios.post("/admin/addcoin", listCoin)
+     await axios.post("/admin/addcoin", listCoin)
       SetRefresh(!refresh)
       Cancel()
     }catch(err){

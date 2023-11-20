@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import ListCoin from "./ListCoin";
 
-export default function AdminAddcoin({setIsOpenAddcoin, fetchData, SetRefresh,refresh }) {
+export default function AdminAddcoin({setIsOpenAddcoin }) {
 
 
   const [isOpenAddcoinMore , setIsOpenAddcoinMore] = useState(false)
@@ -63,7 +63,7 @@ export default function AdminAddcoin({setIsOpenAddcoin, fetchData, SetRefresh,re
 
 
       <div className="flex flex-col gap-2 overflow-y-auto h-[15rem]">
-        {getCoinListInDatabase.map((el,index) => <ListCoin key={index}  Cancel={Cancel} coinId={el.coin_list_id} fetchData={fetchData} coinList={el.coin_name} photoCoin={el.image_coin} status={el.status}     fechListCoinInDatabase={fechListCoinInDatabase}  SetRefresh={SetRefresh} refresh={refresh}/>) }
+        {getCoinListInDatabase.map((el,index) => <ListCoin key={index}  Cancel={Cancel} coinId={el.coin_list_id}  coinList={el.coin_name} photoCoin={el.image_coin} status={el.status}      />) }
       </div>
 
       {/* button */}

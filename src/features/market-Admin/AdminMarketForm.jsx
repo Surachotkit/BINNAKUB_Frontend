@@ -12,10 +12,10 @@ import { useAuth } from "../../hooks/use-auth";
 
 export default function AdminMarketForm() {
 
-  const { isOpenAddcoin, setIsOpenAddcoin } = useAuth();
+  const { isOpenAddcoin, setIsOpenAddcoin,refresh } = useAuth();
 
   const [mergeList, setMergeList] = useState([]);
-  const [refresh,SetRefresh] = useState(false)
+
   // const [isLoading,setIsLoading] = useState(false)
   // console.log("🚀 ~ file: AdminMarketForm.jsx:19 ~ AdminMarketForm ~ isLoading:", isLoading)
   
@@ -42,11 +42,14 @@ export default function AdminMarketForm() {
   useEffect(() => {
 
     fetchData();
+    console.log("USE EFFECT")
 
   }, [refresh]);
+
   const fetchData = async () => {
     try {
       const { data: coinData } = await axios.get("/coinlist/market");
+      console.log(coinData,"VVVVV")
       const { data: realTimeData } = await axiosDefault.get("https://api.coincap.io/v2/assets");
 
       if (coinData[0] && realTimeData.data) {
@@ -72,6 +75,7 @@ export default function AdminMarketForm() {
         }).filter(Boolean);
         // console.log("🚀 ~ file: MarketForm.jsx:39 ~ combinedList ~ combinedList:", combinedList)
         setMergeList(combinedList);
+ 
       }
     } catch (err) {
       console.error(err);
@@ -86,7 +90,7 @@ export default function AdminMarketForm() {
       {isOpenAddcoin && (
         <Modal>
           
-          <AdminAddcoin  setIsOpenAddcoin={setIsOpenAddcoin} fetchData={fetchData} SetRefresh={SetRefresh} refresh={refresh}/>
+          <AdminAddcoin  setIsOpenAddcoin={setIsOpenAddcoin} />
          
         </Modal>
       )}

@@ -3,10 +3,14 @@ import del from '../../../img/icon/del.png'
 import edit from '../../../img/icon/edit.png'
 
 
-export default function AdminMarketEdit({setIsModalOpen,coin_list_id, deleteCoin }) {
+export default function AdminMarketEdit({setIsModalOpen,coin_list_id, deleteCoin}) {
  
-  const handleClickDelete = () => {
+  
+  const handleClickDelete = (e) => {
+    e.preventDefault()
     deleteCoin(coin_list_id)
+
+
   }
   const handleClickEdit = (e) => {
     setIsModalOpen(true)

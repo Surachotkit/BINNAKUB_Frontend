@@ -9,6 +9,7 @@ import { useAuth } from "../../hooks/use-auth";
 
 export default function AdminMarketItem({coinName, price, change, marketCap, amount, coin_list_id, deleteCoin,photoCoin}) {
 
+
   const [isModalOpen , setIsModalOpen] = useState(false)
 
   return (

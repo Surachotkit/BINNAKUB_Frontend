@@ -10,14 +10,14 @@ export default function TransactionItem({coin_name, quantity, price, type, fee})
         </span>
         <span>{quantity}</span>
         <div className="flex justify-center items-center flex-col">
-          <span>$ {price}</span>
+          <span>$ {quantity}</span>
         </div>
         <div className="flex justify-center items-center rounded-full px-10 w-8 h-8 bg-[#C3FFCD] ">
 
         <span>{type}</span>
         </div>
         <div className="flex justify-start items-center flex-col">
-          <span>$ {price}</span>
+          <span>$ {quantity}</span>
         </div>
         <span>$ {fee}</span>
       

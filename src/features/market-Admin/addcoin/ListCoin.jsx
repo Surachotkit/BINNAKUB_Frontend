@@ -1,7 +1,8 @@
 import { useState } from "react";
 import axios from "../../../config/axios";
+import { useEffect } from "react";
 
-export default function ListCoin({Cancel,coinId,coinList,photoCoin,status}) {
+export default function ListCoin({Cancel,coinId,coinList,photoCoin,status,fechListCoinInDatabase,fetchData, SetRefresh,refresh}) {
   const [listCoin, setListCoin] = useState({
     coin_list_id: coinId,
     coin_name: coinList,
@@ -13,11 +14,13 @@ export default function ListCoin({Cancel,coinId,coinList,photoCoin,status}) {
       setListCoin(listCoin)
       console.log(listCoin)
       axios.post("/admin/addcoin", listCoin)
+      SetRefresh(!refresh)
       Cancel()
     }catch(err){
       console.log(err)
     }
   }
+
 
 
   return (

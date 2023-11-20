@@ -64,7 +64,7 @@ export default function Deposit({ onClose }) {
       <div className="flex justify-between">
         <span className="flex px-6 pb-4">$ 1</span>
         <span className="flex px-6  text-gray-400 text-sm">
-          Balance : 500 USDT
+          {/* Balance : 500 USDT */}
         </span>
       </div>
 
@@ -105,7 +105,7 @@ export default function Deposit({ onClose }) {
 
         <div className="flex justify-end w-full">
           <span className="flex px-6 text-gray-400 text-sm -mb-2">
-            Fee : 0.0125
+            Fee : 0.01
           </span>
         </div>
 

@@ -56,7 +56,6 @@ export default function DashboardItem() {
     {mergeList.map(({ coin_name, amount, weight, price }, index) => (
       <div key={index} className="flex justify-evenly items-center hover:bg-gray-50 py-5 border-b w-full">
         <span className="flex gap-2">
-          {/* <img src={bitCoin} alt="bitcoin" /> */}
           {coin_name}
         </span>
         <span>{amount + ' ' +`${coin_name}`}</span>

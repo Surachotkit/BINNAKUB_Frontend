@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
-import bitCoin from "../../img/icon/btc.png"
 import { useAuth } from "../../hooks/use-auth";
 import axiosDefault from "axios";
 import axios from "../../config/axios";
-import { cache } from "joi";
+
 
 
 export default function DashboardItem() {
 
   const { authUser } = useAuth();
   const [ dataList, setDataList ] = useState([])
+  console.log("🚀 ~ file: DashboardItem.jsx:12 ~ DashboardItem ~ dataList:", dataList)
   const [mergeList, setMergeList] = useState([]);
   console.log("🚀 ~ file: DashboardItem.jsx:14 ~ DashboardItem ~ mergeList:", mergeList)
 
@@ -55,11 +55,11 @@ export default function DashboardItem() {
     <div className="flex flex-col justify-center items-center gap-5 w-[100vh]">
     {mergeList.map(({ coin_name, amount, weight, price }, index) => (
       <div key={index} className="flex justify-evenly items-center hover:bg-gray-50 py-5 border-b w-full">
-        <span className="flex gap-2">
+        <span className="flex gap-2 flex-1 pl-20">
           {coin_name}
         </span>
-        <span>{amount + ' ' +`${coin_name}`}</span>
-        <span className="text-green-500">{parseFloat(price).toLocaleString(2)} USDT </span>
+        <span className="flex flex-1">{amount + ' ' +`${coin_name}`}</span>
+        <span className="text-green-500 flex flex-1">{parseFloat(price).toLocaleString(2)} USDT </span>
       </div>
     ))}
   </div>

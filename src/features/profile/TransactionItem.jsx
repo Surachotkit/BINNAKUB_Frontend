@@ -7,7 +7,7 @@ export default function TransactionItem({
   fee,
   el
 }) {
-  console.log("🚀 ~ file: TransactionItem.jsx:10 ~ el:", el)
+  // console.log("🚀 ~ file: TransactionItem.jsx:10 ~ el:", el)
   
 
   return (

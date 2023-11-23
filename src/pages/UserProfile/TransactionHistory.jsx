@@ -5,15 +5,17 @@ import axios from "../../config/axios";
 import { useEffect } from "react";
 import { useState } from "react";
 import axiosDefault from "axios";
+import { useLocation } from "react-router-dom";
 
 
 export default function TransactionHistory() {
 
 
-
+  const location = useLocation();
+  console.log("🚀 ~ file: TransactionHistory.jsx:15 ~ TransactionHistory ~ location:", location.pathname)
   // realtime ***
   const [mergeList, setMergeList] = useState([]);
-  console.log("🚀 ~ file: DashboardItem.jsx:14 ~ DashboardItem ~ mergeList:", mergeList)
+  // console.log("🚀 ~ file: DashboardItem.jsx:14 ~ DashboardItem ~ mergeList:", mergeList)
 
   const fetchData = async () => {
     try {
@@ -58,14 +60,14 @@ export default function TransactionHistory() {
   return (
     <div className="flex justify-center w-full pt-20">
       <div className="flex flex-col">
-        <div className="flex gap-8 py-2">
+        <div className="flex gap-8 py-2 ">
           <Link to="/profile/transactionhistory">
-            <div className="hover:border-b-4 border-red-500 py-2 cursor-pointer">
+            <div className={`hover:border-b-4 border-red-500 py-2 cursor-pointer ${location.pathname=="/admin/profile/transactionhistory "?"border-b-red-600 border-b-4 ":""} `}>
               Transaction History
             </div>
           </Link>
           <Link to="/profile/deposithistory">
-            <div className="hover:border-b-4 border-red-500 py-2 cursor-pointer">
+            <div className={`hover:border-b-4 border-red-500 py-2 cursor-pointer${location.pathname=="/admin/profile/deposithistory "?"border-b-red-600 border-b-4 bg-gray-500 ":""}` }>
               Deposit History
             </div>
           </Link>

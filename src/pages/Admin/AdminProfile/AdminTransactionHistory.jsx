@@ -5,10 +5,14 @@ import AdminTransactionMenu from "../../../features/profile-Admin/AdminTransacti
 import { useEffect } from "react";
 import { useState } from "react";
 import axios from "../../../config/axios";
+import { useLocation } from "react-router-dom";
 
 export default function AdminTransactionHistory() {
   const [ dataList, setDataList ] = useState([])
   console.log("🚀 ~ file: TransactionHistory.jsx:10 ~ TransactionHistory ~ dataList:", dataList)
+
+  const location = useLocation();
+  console.log("🚀 ~ file: AdminTransactionHistory.jsx:15 ~ AdminTransactionHistory ~ location:", location.pathname)
 
   useEffect(() => {
     const getDataTransactionProfileAdmin = async () => {
@@ -31,12 +35,12 @@ export default function AdminTransactionHistory() {
       <div className="flex flex-col">
         <div className="flex gap-8 py-2">
           <Link to="/admin/profile/transactionhistory">
-            <div className="hover:border-b-4 border-red-500 py-2 cursor-pointer">
+            <div className={`hover:border-b-4 border-red-500 py-2 cursor-pointer ${location.pathname=="/admin/profile/transactionhistory "?"border-b-red-600 border-b-4 ":""}`}>
               Transaction History
             </div>
           </Link>
           <Link to="/admin/profile/deposithistory">
-            <div className="hover:border-b-4 border-red-500 py-2 cursor-pointer">
+            <div className={`hover:border-b-4 border-red-500 py-2 cursor-pointer ${location.pathname=="/admin/profile/deposithistory "?"border-b-red-600 border-b-4 ":""}`}>
               Deposit History
             </div>
           </Link>

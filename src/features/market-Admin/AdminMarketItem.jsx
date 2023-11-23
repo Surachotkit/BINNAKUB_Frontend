@@ -29,7 +29,8 @@ export default function AdminMarketItem({coinName, price, change, marketCap, amo
           </div>
         </span>
         <span className="flex flex-1 pl-20">{price}</span>
-        <span className="flex flex-1 text-green-500 ">{change}%</span>
+        {change < 0 ? <span className=" text-red-500 flex flex-1">{change}%</span> :
+        <span className=" text-green-500 flex flex-1">{change}%</span>}
         <span className="flex flex-1">{marketCap}</span>
         <span className="flex flex-1 pl-5">{amount}</span>
         <AdminMarketEdit  coin_list_id={coin_list_id} deleteCoin={deleteCoin} setIsModalOpen={setIsModalOpen}/>

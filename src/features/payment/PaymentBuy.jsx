@@ -12,18 +12,20 @@ export default function PaymentBuy({ coinName,price,image_coin,setIsOpenBuy}) {
   const [usdtAmount, setUsdtAmount] = useState('');
   
   const handleUsdtAmountChange = async (e) => {
+    // จำนวน usdt ที่ user กรอกมา
     const inputAmount = e.target.value;
     setUsdtAmount(inputAmount);
+    
     if (parseFloat(inputAmount) > 0) {
       const USDT = parseFloat(inputAmount);
-      setCryptoAmount(USDT / parseFloat(price.replace(/,/g, '')));
+      setCryptoAmount(USDT / parseFloat(price.replace(/,/g, '')));  // สูตรคำนวน ซื้อ USDT เท่าไร จะได้ เหรียญ กี่เหรียญ
     } else {
       setCryptoAmount(0);
     }
   };
   
   const handleBuyButtonClick = async () => {
-
+     // user กรอก ราคา มาเกินกว่า balance ไหม
     try{
       if(parseFloat(usdtAmount) > parseFloat(getUsdt?.quantity)){
         toast.error(`Your $USDT amount is not enough.`)
@@ -48,13 +50,14 @@ export default function PaymentBuy({ coinName,price,image_coin,setIsOpenBuy}) {
             status: "",
             amountUsdt:  parseFloat(usdtAmount)
           }
-
+          // ถ้าไม่มีให้ create
           if (checkValidate.data.response.validate === constantStatus.FALSE) {
             responseValue = await axios.post("/transaction/create", bodyTransaction);
             if(responseValue.data.response.status === constantStatus.SUCCEDD){ 
               toast.success(`Buy ${coinName} Success`)
               setIsOpenBuy(false);
             }
+            // ถ้ามี ให้ update
           } else if (checkValidate.data.response.validate === constantStatus.TRUE) {
             responseValue = await axios.post("/transaction/update", bodyTransaction);
             if(responseValue.data.response.status === constantStatus.SUCCEDD){ 
@@ -73,7 +76,7 @@ export default function PaymentBuy({ coinName,price,image_coin,setIsOpenBuy}) {
   
 
   const fetchData = async () => {
-   
+   // show balance 
     try {
       const { data: getUsdtByUserId } = await axios.get("/user-profile/getUsdtByUserId");
       setGetUsdt(getUsdtByUserId?.findPortfolioByUserId)

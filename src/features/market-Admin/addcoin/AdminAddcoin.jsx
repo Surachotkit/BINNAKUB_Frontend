@@ -5,11 +5,11 @@ import { useState } from "react";
 import { useEffect } from "react";
 import ListCoin from "./ListCoin";
 
-export default function AdminAddcoin({setIsOpenAddcoin}) {
+export default function AdminAddcoin({setIsOpenAddcoin }) {
 
 
   const [isOpenAddcoinMore , setIsOpenAddcoinMore] = useState(false)
-    
+
   // upload photo
   const addCoin = async (data) => {
     try {
@@ -22,6 +22,7 @@ export default function AdminAddcoin({setIsOpenAddcoin}) {
 
   const Cancel = () => {
     setIsOpenAddcoin(false);
+
   };
 
     // get coin Inactive
@@ -29,23 +30,26 @@ export default function AdminAddcoin({setIsOpenAddcoin}) {
     console.log("🚀 ~ file: AdminAddcoin.jsx:31 ~ AdminAddcoin ~ getCoinListInDatabase:", getCoinListInDatabase)
 
   useEffect(() => {
-    const fechListCoinInDatabase = async () => {
-      try {
-        const { data: coinListInDatabase } = await axios.get("/coinlist/list/database");
-
-        setGetCoinListInDatabase(coinListInDatabase[0].getCoinListInActive);
-      } catch (err) {
-        console.log(err);
-      }
-    };
     fechListCoinInDatabase();
   }, []);
+
+  const fechListCoinInDatabase = async () => {
+    try {
+      const { data: coinListInDatabase } = await axios.get("/coinlist/list/database");
+
+      setGetCoinListInDatabase(coinListInDatabase[0].getCoinListInActive);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+
 
   return (
     <div className="flex flex-col gap-2 px-4">
       <div className="flex text-lg justify-between ">
         {isOpenAddcoinMore && (
-          <AdminCreateToDatabase addCoin={addCoin} onClose={() => Cancel()} />
+          <AdminCreateToDatabase addCoin={addCoin} onClose={() => Cancel() } fechListCoinInDatabase={fechListCoinInDatabase} />
         )}
 
         <span className="font-bold ">Add Coin</span>
@@ -59,7 +63,7 @@ export default function AdminAddcoin({setIsOpenAddcoin}) {
 
 
       <div className="flex flex-col gap-2 overflow-y-auto h-[15rem]">
-        {getCoinListInDatabase.map(el => <ListCoin Cancel={Cancel} coinId={el.coin_list_id} coinList={el.coin_name} photoCoin={el.image_coin} status={el.status} />) }
+        {getCoinListInDatabase.map((el,index) => <ListCoin key={index}  Cancel={Cancel} coinId={el.coin_list_id}  coinList={el.coin_name} photoCoin={el.image_coin} status={el.status}      />) }
       </div>
 
       {/* button */}

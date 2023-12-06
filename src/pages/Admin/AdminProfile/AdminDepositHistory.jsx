@@ -4,11 +4,15 @@ import AdminDepositItem from "../../../features/profile-Admin/AdminDepositItem";
 import { useEffect } from "react";
 import { useState } from "react";
 import axios from "../../../config/axios";
+import { useLocation } from "react-router-dom";
 
 
 export default function AdminDepositHistory() {
   const [ dataList, setDataList ] = useState([])
   console.log("🚀 ~ file: TransactionHistory.jsx:10 ~ TransactionHistory ~ dataList:", dataList)
+
+  const location = useLocation();
+  console.log("🚀 ~ file: AdminTransactionHistory.jsx:15 ~ AdminTransactionHistory ~ location:", location.pathname)
 
   useEffect(() => {
     const getDataTransactionProfile = async () => {

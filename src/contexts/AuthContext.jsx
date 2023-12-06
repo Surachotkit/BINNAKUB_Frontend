@@ -24,6 +24,7 @@ export default function AuthContextProvider({ children }) {
   const [isOpenAddcoin, setIsOpenAddcoin] = useState(false)
   const [isOpenAddcoinMore, setIsOpenAddcoinMore] = useState(false)
   const [isOpenAddQuantity, setIsOpenAddQuantity] = useState(false)
+  const [refresh,SetRefresh] = useState(false)
 
 
 
@@ -88,7 +89,7 @@ export default function AuthContextProvider({ children }) {
         isOpenAddQuantity,
         setIsOpenAddcoin,
         setIsOpenAddcoinMore,
-        setIsOpenAddQuantity
+        setIsOpenAddQuantity,SetRefresh,refresh
 
       }}
     >

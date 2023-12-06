@@ -38,7 +38,8 @@ const MarketItem = ({ coin_list_id, coinName,image_coin, price, change, marketCa
           </div>
         </span>
         <span className="flex flex-1">{price}</span>
-        <span className=" text-green-500 flex flex-1">{change}%</span>
+        {change < 0 ? <span className=" text-red-500 flex flex-1">{change}%</span> :
+        <span className=" text-green-500 flex flex-1">{change}%</span>}
         <span className="flex flex-1">{marketCap}</span>
         <span className="flex flex-1">{amount}</span>
         <MarketButton data={clickedData} setIsOpenBuy={setIsOpenBuy} setIsOpenSell={setIsOpenSell} />

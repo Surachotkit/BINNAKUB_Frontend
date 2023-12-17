@@ -9,7 +9,7 @@ import DepositHistory from "../pages/UserProfile/DepositHistory";
 import TransactionHistory from "../pages/UserProfile/TransactionHistory";
 import Dashboard from "../pages/UserProfile/Dashboard";
 import Profile from "../layout/Profile";
-import DashboardNotRecord from "../pages/UserProfile/DashboardNotrecord";
+import DashboardNotRecord from "../pages/UserProfile/DashboardNotRecord";
 import AdminMarketPage from "../pages/Admin/AdminMarket/AdminMarketPage";
 import AdminDashboard from "../pages/Admin/AdminProfile/AdminDashboard";
 import NotLogin from "../features/auth/NotLogin";

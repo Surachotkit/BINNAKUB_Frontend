@@ -1,5 +1,5 @@
 import React from 'react'
-import DashboardNotRecord from '../../UserProfile/DashboardNotrecord'
+import DashboardNotRecord from '../../UserProfile/DashboardNotRecord'
 
 export default function AdminDashboard() {
   return (
